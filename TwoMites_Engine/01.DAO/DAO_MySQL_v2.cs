@@ -49,9 +49,9 @@ namespace TwoMites_Engine._01.DAO
     private string name;
 
     private string url;
-    private string query = string.Empty;
+    private string query;
 
-    public object result = null;
+    public object result;
     private DataTable _data_table = null;
     public DataTable m_data_table
     {
@@ -65,8 +65,8 @@ namespace TwoMites_Engine._01.DAO
     }
 
     #region 멤버함수 선언부
-    protected MySqlConnection ConnectDB() => connect_DB();
-    protected MySqlCommand SetCommand(string _command, MySqlConnection _connect) => set_command(query, _connect);
+    protected MySql.Data.MySqlClient.MySqlConnection ConnectDB() => connect_DB();
+    protected MySql.Data.MySqlClient.MySqlCommand SetCommand(string _command, MySql.Data.MySqlClient.MySqlConnection _connect) => set_command(query, _connect);
     public void SetQuery(string _query) => set_query(_query);
     public void Execute(EXECUTE_TYPE _execute_type) => execute(_execute_type);
     public object GetListObj() => get_obj_list();
@@ -87,8 +87,8 @@ namespace TwoMites_Engine._01.DAO
           break;
       }
     }
-    private MySqlConnection connect_DB() => new MySqlConnection(url);
-    private MySqlCommand set_command(string _command, MySqlConnection _connect) => new MySqlCommand(query, _connect);
+    private MySql.Data.MySqlClient.MySqlConnection connect_DB() => new MySql.Data.MySqlClient.MySqlConnection(url);
+    private MySql.Data.MySqlClient.MySqlCommand set_command(string _command, MySql.Data.MySqlClient.MySqlConnection _connect) => new MySql.Data.MySqlClient.MySqlCommand(query, _connect);
 
 
     #endregion
@@ -103,7 +103,7 @@ namespace TwoMites_Engine._01.DAO
         using (var command = set_command(query, connection))
         {
           connection.Open();
-          MySqlDataAdapter data_adapter = new MySqlDataAdapter(command);
+          MySql.Data.MySqlClient.MySqlDataAdapter data_adapter = new MySql.Data.MySqlClient.MySqlDataAdapter(command);
           using (m_data_table = new DataTable())
           {
             if (data_adapter.Fill(m_data_table) > 0)
@@ -142,7 +142,7 @@ namespace TwoMites_Engine._01.DAO
         using (var command = set_command(query, connection))
         {
           connection.Open();
-          using (MySqlDataAdapter data_adapter = new MySqlDataAdapter(command))
+          using (MySql.Data.MySqlClient.MySqlDataAdapter data_adapter = new MySql.Data.MySqlClient.MySqlDataAdapter(command))
           using (m_data_table = new DataTable())
             if (data_adapter.Fill(m_data_table) > 0)
               return m_data_table;
@@ -173,6 +173,49 @@ namespace TwoMites_Engine._01.DAO
     {
       _list_query.ForEach(_query => get_data_table(_query));
       return true;
+    }
+    #endregion
+
+    #region DB 백업 및 Restore
+    public void BackUpDB(string path)
+    {
+      try
+      {
+        using (var connection = connect_DB())
+        using (var command = new MySql.Data.MySqlClient.MySqlCommand())
+        using (var mysql_backup = new MySql.Data.MySqlClient.MySqlBackup(command))
+        {
+          connection.Open();
+          command.Connection = connection;
+          mysql_backup.ExportToFile(path);
+          connection.Close();
+        }
+      }
+      catch (Exception _e)
+      {
+        System.Diagnostics.Debug.WriteLine(_e.Message);
+      }
+    }
+
+    public void RestoreDB(string path)
+    {
+      try
+      {
+        using (var connection = connect_DB())
+        using (var command = new MySql.Data.MySqlClient.MySqlCommand())
+        using (var mysql_backup = new MySql.Data.MySqlClient.MySqlBackup(command))
+        {
+          connection.Open();
+          command.Connection = connection;
+          mysql_backup.ImportFromFile(path);
+          connection.Close();
+        }
+      }
+      catch (Exception _e)
+      {
+        System.Diagnostics.Debug.WriteLine(_e.Message);
+      }
+
     }
     #endregion
   }

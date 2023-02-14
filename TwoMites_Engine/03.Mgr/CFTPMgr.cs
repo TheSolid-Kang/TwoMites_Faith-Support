@@ -26,7 +26,7 @@ namespace TwoMites_Engine._03.Mgr
       this.port = port;
       this.user = user;
       this.pwd = pwd;
-      server_path = @"www/data/church";
+      server_path = @"www/data/temp";
     }
 
     public string ip_addr { get; set; }
