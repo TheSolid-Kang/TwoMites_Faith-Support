@@ -1,0 +1,90 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+
+  <Style x:Key="alternatingListViewItemStyle" TargetType="{x:Type ListViewItem}">
+    <Style.Triggers>
+      <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+        <Setter Property="Background" Value="LightBlue"></Setter>
+      </Trigger>
+      <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+        <Setter Property="Background" Value="LightGray"></Setter>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  
+  
+  <Style x:Key="Grid_row_definitions" TargetType="{x:Type RowDefinition}">
+    <Setter Property="Height" Value="*"/>
+    <Setter Property="Height" Value="*"/>
+    <Setter Property="Height" Value="*"/>
+    <Setter Property="Height" Value="*"/>
+    <Setter Property="Height" Value="*"/>
+    <Setter Property="Height" Value="*"/>
+    <Setter Property="Height" Value="*"/>
+  </Style>
+  
+  <Style x:Key="Grid_column_definitions" TargetType="{x:Type ColumnDefinition}">
+    <Setter Property="Width" Value="*"/>
+    <Setter Property="Width" Value="*"/>
+    <Setter Property="Width" Value="*"/>
+    <Setter Property="Width" Value="*"/>
+    <Setter Property="Width" Value="*"/>
+    <Setter Property="Width" Value="*"/>
+    <Setter Property="Width" Value="*"/>
+  </Style>
+
+  
+  <Style TargetType="Button" x:Key="btnAstyle">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Background" Value="Aqua"/>
+        <Setter Property="Content" Value="A스타일"/>
+
+    </Style>
+
+    <Style TargetType="Button" x:Key="btnBstyle">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Background" Value="Green"/>
+        <Setter Property="Content" Value="B스타일"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="btnCstyle">
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Background" Value="DarkGray"/>
+        <Setter Property="Content" Value="C스타일"/>
+    </Style>
+
+
+
+  <Style x:Key="GridMainRow1" TargetType="{x:Type RowDefinition}">
+    <Setter Property="Height" Value="*"/>
+  </Style>
+  <Style x:Key="GridMainRow2" TargetType="{x:Type RowDefinition}">
+    <Setter Property="Height" Value="*"/>
+  </Style>
+  <Style x:Key="GridMainRow3" TargetType="{x:Type RowDefinition}">
+    <Setter Property="Height" Value="*"/>
+  </Style>
+
+  <Style x:Key="GridMainRow4" TargetType="{x:Type RowDefinition}">
+
+    <Setter Property="Height" Value="0"/>
+
+  </Style>
+
+  <Style x:Key="GridMainRow5" TargetType="{x:Type RowDefinition}">
+
+    <Setter Property="Height" Value="0"/>
+
+  </Style>
+
+  <Style x:Key="GridMainRow6" TargetType="{x:Type RowDefinition}">
+
+    <Setter Property="Height" Value="0"/>
+
+  </Style>
+</ResourceDictionary>

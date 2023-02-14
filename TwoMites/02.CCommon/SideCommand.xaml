@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="TwoMites._02.CCommon.CSideCommander"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TwoMites._02.CCommon"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="200"
+                          Loaded="Load" Unloaded="UnLoad"
+             >
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Border Grid.Row="1" >
+      <ListBox ItemsSource="{Binding ListCommander}" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <ListBox.ItemTemplate>
+          <DataTemplate >
+            <Button Command="{Binding Command}"  IsEnabled="{Binding Enable}"  >
+              <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding ImgPath}"/>
+                <TextBlock Text="{Binding Name}"/>
+              </StackPanel>
+            </Button>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Border>
+  </Grid>
+</UserControl>

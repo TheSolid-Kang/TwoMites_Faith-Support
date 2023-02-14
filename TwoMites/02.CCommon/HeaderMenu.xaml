@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="TwoMites._02.CCommon.HeaderMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TwoMites._02.CCommon"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="1200" 
+             Loaded="Load" Unloaded="UnLoad">
+
+
+
+
+  <Grid Background="SkyBlue"  >
+    <Grid.ColumnDefinitions >
+      
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions >
+      
+    </Grid.RowDefinitions>
+    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Width="auto" Height="auto" >
+      <Button Content="성경" Width="auto" Command="{Binding bind_bible}" ></Button>
+      <Button Content="말씀" Width="auto"></Button>
+    </StackPanel>
+  </Grid>
+</UserControl>

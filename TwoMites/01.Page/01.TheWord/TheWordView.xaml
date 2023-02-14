@@ -1,0 +1,187 @@
+﻿<UserControl x:Class="TwoMites._01.Page._01.TheWord.TheWordView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TwoMites._01.Page._01.TheWord"
+             xmlns:side_commander="clr-namespace:TwoMites._02.CCommon"
+
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1200"
+             Loaded="Load" Unloaded="UnLoad"
+             >
+  <Grid Background="White">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <Grid Background="White" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="7"/>
+
+
+    <Grid Background="#FFDCDCE0" Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" 
+          Panel.ZIndex="1">
+      <ListBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" Width="Auto" 
+                  ItemsSource="{Binding bind_list_dto_the_word}"
+                  SelectedItem="{Binding focus_the_word_item, Mode=TwoWay}" >
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <WrapPanel>
+              <TextBlock Text="{Binding Path=tw_date, StringFormat=yyyy/MM/dd}"/>
+              <TextBlock Text=" | "/>
+              <TextBlock Text="{Binding Path=tw_pastor}"/>
+              <TextBlock Text=" | "/>
+              <TextBlock Text="{Binding Path=tw_title}"/>
+            </WrapPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Grid>
+    <Grid Background="#FFDCDCE0" Grid.Row="5" Grid.Column="0" Grid.RowSpan="2">
+      <side_commander:CSideCommander />
+    </Grid>
+    <Grid Background="#FFE4E4C7" Grid.Row="1" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <Grid Margin="10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Margin="10" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+          <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Content="목사님" Background="white"/>
+          <TextBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2" 
+                   Text="{Binding Path=focus_the_word_item.tw_pastor, Mode=TwoWay}"  
+                 Background="White"/>
+
+          <DatePicker Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="2" 
+                      Background="White"
+                      HorizontalAlignment="Left" 
+                      VerticalContentAlignment="Center"
+                      SelectedDate="{Binding focus_the_word_item.tw_date}"/>
+
+          <!--SelectedDate="{Binding SelectedDate}"/>-->
+
+          
+          
+          <Label Grid.Row="4" Grid.Column="0" Margin="2" Grid.RowSpan="3" Background="AntiqueWhite"
+               HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+               Content="title: "/>
+          <TextBox Text="{Binding Path=focus_the_word_item.tw_title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                 Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="6" Background="AntiqueWhite"
+                 AcceptsReturn="True"/>
+        </Grid>
+
+
+
+        <TextBox Text="{Binding Path=focus_the_word_item.tw_the_word, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                 Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="7" Background="White"
+                 AcceptsReturn="True"/>
+        <Button Command="{Binding CreateTheWord}"  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Content="새등록"/>
+        <Button Command="{Binding SaveTheWord}"  Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Content="저장"/>
+        <Button Command="{Binding CancelWriteTheWord}"  Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="6" Content="삭제"/>
+      </Grid>
+      <Grid Margin="10" Grid.Row="0" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="3">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+<!--
+        <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" HorizontalAlignment="Center" Width="Auto"  ItemsSource="{Binding bind_list_dto_bible_summary}">
+          <ListView.View >
+            <GridView >
+              <GridViewColumn Header="date" DisplayMemberBinding="{Binding bs_date, Mode=TwoWay}" Width="100"/>
+              <GridViewColumn Header="summary" DisplayMemberBinding="{Binding bs_descript, Mode=TwoWay}" Width="410"/>
+            </GridView>
+          </ListView.View>
+          <ListView.ItemContainerStyle >
+            <Style TargetType="ListViewItem" />
+          </ListView.ItemContainerStyle>
+        </ListView>
+        <TextBox Grid.Row="5" Grid.Column="0"  Grid.RowSpan="2" Grid.ColumnSpan="6"   
+                 AcceptsReturn="True" Text="{Binding Path=bible_summary, Mode=TwoWay}" />
+        <Button Command="{Binding insert_bible_summary}" Content="작성" Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" />
+-->
+      </Grid>
+
+    </Grid>
+  </Grid>
+</UserControl>
