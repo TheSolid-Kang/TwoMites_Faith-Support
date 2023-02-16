@@ -114,6 +114,23 @@ namespace TwoMites._01.Page._01.TheWord
 
 
     #endregion
+    #region search bind 변수
+    public DateTime SearchFromDate { get; set; }
+    public DateTime SearchToDate { get; set; }
+    public bool IsSearchAll { get; set; } = true;
 
+    public string SearchKeyword { get; set; }
+    public ICommand Search => new CDelegateCommand((object _obj) => {
+      char[] ch_split = { ',' };
+      string[] arr_search_keyword = SearchKeyword.Split(ch_split);
+
+
+      var list_the_word = (from element in bind_list_dto_the_word
+                           where element.tw_the_word.Contains(arr_search_keyword[0].Trim())
+                           select element).ToList();
+      bind_list_dto_the_word = new ObservableCollection<TheWordDTO>(list_the_word);
+
+    });
+    #endregion
   }
 }
