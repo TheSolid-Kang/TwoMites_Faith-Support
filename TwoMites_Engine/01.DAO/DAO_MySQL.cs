@@ -30,7 +30,7 @@ namespace TwoMites_Engine._01.DAO
     const string DB_HOST = "localhost;";
     const string DB_USER = "root;";
     readonly string DB_NAME = "TwoMites;";
-    readonly string DB_PASS = "0691;";
+    readonly string DB_PASS = "root;";
     const string CHAR_SET = "UTF8;";
 
     private string? m_db_name;

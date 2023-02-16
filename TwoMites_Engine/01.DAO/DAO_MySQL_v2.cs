@@ -49,103 +49,56 @@ namespace TwoMites_Engine._01.DAO
     private string name;
 
     private string url;
-    private string query;
 
     public object result;
-    private DataTable _data_table = null;
-    public DataTable m_data_table
+    private DataTable _dataTable = null;
+    public DataTable m_dataTable
     {
-      get => _data_table;
+      get 
+      {
+        var dataTable = _dataTable;
+        return dataTable;
+      }
       set
       {
-        if (_data_table != null)
-          _data_table.Dispose();
-        _data_table = value;
+        if (_dataTable != null)
+          _dataTable.Dispose();
+        _dataTable = value;
       }
     }
 
     #region 멤버함수 선언부
-    protected MySql.Data.MySqlClient.MySqlConnection ConnectDB() => connect_DB();
-    protected MySql.Data.MySqlClient.MySqlCommand SetCommand(string _command, MySql.Data.MySqlClient.MySqlConnection _connect) => set_command(query, _connect);
-    public void SetQuery(string _query) => set_query(_query);
-    public void Execute(EXECUTE_TYPE _execute_type) => execute(_execute_type);
-    public object GetListObj() => get_obj_list();
-    public DataTable GetDataTable() => get_data_table();
-    public DataTable GetDataTable(string _query) => get_data_table(_query);
-    public bool ExecuteMulQuery(List<string> _list_query) => execute_mul_query(_list_query);
-
+    protected MySql.Data.MySqlClient.MySqlConnection ConnectDB() => _ConnectDb();
+    protected MySql.Data.MySqlClient.MySqlCommand SetCommand(string _query, MySql.Data.MySqlClient.MySqlConnection _connect) => _SetCommand(_query, _connect);
+    public void Execute(string _query) => _Execute(_query);
+    public DataTable GetDataTable(string _query) => _GetDataTable(_query);
+    public bool ExecuteMulQuery(List<string> _listQuery) => _ExecuteMulQuery(_listQuery);
     #endregion
 
     #region 멤버함수 정의부
-    private void set_query(string _query) => query = _query;
-    private void execute(EXECUTE_TYPE _execute_type = EXECUTE_TYPE.GET_DATE_TABLE)
+    private void _Execute(string _query)
     {
-      switch (_execute_type)
-      {
-        case EXECUTE_TYPE.GET_DATE_TABLE:
-          get_data_table();
-          break;
-      }
+      _GetDataTable(_query);
     }
-    private MySql.Data.MySqlClient.MySqlConnection connect_DB() => new MySql.Data.MySqlClient.MySqlConnection(url);
-    private MySql.Data.MySqlClient.MySqlCommand set_command(string _command, MySql.Data.MySqlClient.MySqlConnection _connect) => new MySql.Data.MySqlClient.MySqlCommand(query, _connect);
+    private MySql.Data.MySqlClient.MySqlConnection _ConnectDb() => new MySql.Data.MySqlClient.MySqlConnection(url);
+    private MySql.Data.MySqlClient.MySqlCommand _SetCommand(string _query, MySql.Data.MySqlClient.MySqlConnection _connect) => new MySql.Data.MySqlClient.MySqlCommand(_query, _connect);
 
 
     #endregion
 
     #region 쿼리 별 실행 유형 
-    private object get_obj_list()
+    private DataTable _GetDataTable(string _query)
     {
-      List<List<object>> list_data_table = null;
       try
       {
-        using (var connection = connect_DB())
-        using (var command = set_command(query, connection))
-        {
-          connection.Open();
-          MySql.Data.MySqlClient.MySqlDataAdapter data_adapter = new MySql.Data.MySqlClient.MySqlDataAdapter(command);
-          using (m_data_table = new DataTable())
-          {
-            if (data_adapter.Fill(m_data_table) > 0)
-            {
-              list_data_table = new List<List<object>>(m_data_table.Rows.Count);
-              var size = m_data_table.Columns.Count;
-              foreach (DataRow row in m_data_table.Rows)
-              {
-                list_data_table.Add(new List<object>());
-                for (int i = 0; i < size; i++)
-                  list_data_table[list_data_table.Count - 1].Add(row[i]);
-              }
-            }
-          }
-        }
-      }
-      catch (Exception _e)
-      {
-        System.Diagnostics.Debug.WriteLine($"예외 == {_e.Message}");
-      }
-      return result = list_data_table;
-    }
-
-
-    private DataTable get_data_table(string _query)
-    {
-      set_query(_query);
-      return get_data_table();
-    }
-    private DataTable get_data_table()
-    {
-
-      try
-      {
-        using (var connection = connect_DB())
-        using (var command = set_command(query, connection))
+        using (var connection = _ConnectDb())
+        using (var command = _SetCommand(_query, connection))
         {
           connection.Open();
           using (MySql.Data.MySqlClient.MySqlDataAdapter data_adapter = new MySql.Data.MySqlClient.MySqlDataAdapter(command))
-          using (m_data_table = new DataTable())
-            if (data_adapter.Fill(m_data_table) > 0)
-              return m_data_table;
+          using (m_dataTable = new DataTable())
+            if (data_adapter.Fill(m_dataTable) > 0)
+              return m_dataTable;
         }
       }
       catch (Exception _e)
@@ -154,24 +107,17 @@ namespace TwoMites_Engine._01.DAO
       }
       return null;
     }
-
-    public void Dispose()
+    bool _ExecuteMulQuery(List<string> _listQuery)
     {
-      using (result as DataTable)
+      try
       {
-        ((DataTable)result)?.Dispose();
-        //GC.SuppressFinalize(true);
+        _listQuery.ForEach(_query => _GetDataTable(_query));
       }
-      if (m_data_table?.Rows.Count != 0)
+      catch (Exception _e)
       {
-        m_data_table?.Clear();
-        m_data_table?.Dispose();
-      }
-    }
 
-    bool execute_mul_query(List<string> _list_query)
-    {
-      _list_query.ForEach(_query => get_data_table(_query));
+      }
+
       return true;
     }
     #endregion
@@ -181,7 +127,7 @@ namespace TwoMites_Engine._01.DAO
     {
       try
       {
-        using (var connection = connect_DB())
+        using (var connection = _ConnectDb())
         using (var command = new MySql.Data.MySqlClient.MySqlCommand())
         using (var mysql_backup = new MySql.Data.MySqlClient.MySqlBackup(command))
         {
@@ -201,7 +147,7 @@ namespace TwoMites_Engine._01.DAO
     {
       try
       {
-        using (var connection = connect_DB())
+        using (var connection = _ConnectDb())
         using (var command = new MySql.Data.MySqlClient.MySqlCommand())
         using (var mysql_backup = new MySql.Data.MySqlClient.MySqlBackup(command))
         {
@@ -218,5 +164,18 @@ namespace TwoMites_Engine._01.DAO
 
     }
     #endregion
+    public void Dispose()
+    {
+      using (result as DataTable)
+      {
+        ((DataTable)result)?.Dispose();
+        //GC.SuppressFinalize(true);
+      }
+      if (m_dataTable?.Rows.Count != 0)
+      {
+        m_dataTable?.Clear();
+        m_dataTable?.Dispose();
+      }
+    }
   }
 }

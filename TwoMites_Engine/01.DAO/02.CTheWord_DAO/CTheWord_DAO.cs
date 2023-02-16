@@ -33,8 +33,7 @@ namespace TwoMites_Engine._01.DAO._02.CTheWord_DAO
         str_buil.Append($" VALUES('{focus_the_word_item?.tw_wt_key}', '{focus_the_word_item?.tw_pastor}' ");
         str_buil.Append($", '{focus_the_word_item?.tw_date.ToString("yyyy/MM/dd")}', DEFAULT, DEFAULT ");
         str_buil.Append($", '{focus_the_word_item?.tw_title}', '{focus_the_word_item?.tw_the_word}'); ");
-        dao.SetQuery(str_buil.ToString());
-        dao.Execute(EXECUTE_TYPE.GET_DATE_TABLE);
+        dao.Execute(str_buil.ToString());
         return true;
       }
     }
@@ -44,8 +43,7 @@ namespace TwoMites_Engine._01.DAO._02.CTheWord_DAO
       List<TheWordDTO> list_the_word = new List<TheWordDTO>();
       using (dao = new DAO_MySQL_v2())
       {
-        dao.SetQuery("SELECT * FROM  twomites.THE_WORD; ");
-        using (var data_table = dao.GetDataTable())
+        using (var data_table = dao.GetDataTable("SELECT * FROM  twomites.THE_WORD; "))
         {
 
           for (int i = 0; i < data_table?.Rows.Count; i++)
@@ -80,8 +78,7 @@ namespace TwoMites_Engine._01.DAO._02.CTheWord_DAO
         str_buil.Append($", tw_pastor =  '{focus_the_word_item?.tw_pastor}' ");
         str_buil.Append(", tw_modified_at = now() ");
         str_buil.Append($" WHERE tw_pk_id = '{focus_the_word_item?.tw_pk_id}'; ");
-        dao.SetQuery(str_buil.ToString());
-        dao.Execute(EXECUTE_TYPE.GET_DATE_TABLE);
+        dao.Execute(str_buil.ToString());
         return true;
       }
     }
@@ -90,8 +87,7 @@ namespace TwoMites_Engine._01.DAO._02.CTheWord_DAO
     {
       using (dao = new DAO_MySQL_v2())
       {
-        dao.SetQuery($"DELETE FROM twomites.THE_WORD WHERE tw_pk_id = {_tw_pk_id};");
-        dao.Execute(EXECUTE_TYPE.GET_DATE_TABLE);
+        dao.Execute($"DELETE FROM twomites.THE_WORD WHERE tw_pk_id = {_tw_pk_id};");
         return true;
       }
     }

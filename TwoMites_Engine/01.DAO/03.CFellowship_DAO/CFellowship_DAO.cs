@@ -39,8 +39,7 @@ namespace TwoMites_Engine._01.DAO._03.CFellowship_DAO
       var list_fellowship_department = new ObservableCollection<FELLOWSHIP_DEPARTMENT>();
       using (var dao = new DAO_MySQL_v2())
       {
-        dao.SetQuery(query.ToString());
-        using (var data_table = dao.GetDataTable())
+        using (var data_table = dao.GetDataTable(query.ToString()))
         {
           for (int i = 0; i < data_table.Rows.Count; i++)
           {
@@ -67,8 +66,7 @@ namespace TwoMites_Engine._01.DAO._03.CFellowship_DAO
         StringBuilder str_buil = new StringBuilder(DEFAULT_CAP);
         str_buil.Append("INSERT INTO TwoMites.FELLOWSHIP(f_fd_id, f_created_at, f_descript) VALUESE ");
         str_buil.Append($"({f_fd_id}, {f_created_at}, '{f_descript}');");
-        dao.SetQuery(str_buil.ToString());
-        using (var data_table = dao.GetDataTable())
+        using (var data_table = dao.GetDataTable(str_buil.ToString()))
         {
 
         }
