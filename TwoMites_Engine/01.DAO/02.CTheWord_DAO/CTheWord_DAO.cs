@@ -7,25 +7,25 @@ using TwoMites_Engine._02.DTO._02.TheWord;
 
 namespace TwoMites_Engine._01.DAO._02.CTheWord_DAO
 {
-  public class CTheWord_DAO : DAO_MySQL_v2
+  public class CTheWord_DAO : Engine._01.DAO.MySQL_DAO_v3
   {
     public CTheWord_DAO() { }
     ~CTheWord_DAO() { Dispose(); }
 
-    private DAO_MySQL_v2 dao;
+    private Engine._01.DAO.MySQL_DAO_v3 dao;
     private const int DEFAULT_CAP = 1024;
 
     #region 멤버함수 선언부
-    public bool InsertTheWord(TheWordDTO? focus_the_word_item) => insert_the_word(focus_the_word_item);
-    public List<TheWordDTO>? SelectListTheWord() => select_list_the_word();
-    public bool UpdateTheWord(TheWordDTO? focus_the_word_item) => update_the_word(focus_the_word_item);
-    public bool DeleteTheWord(int _tw_pk_id) => delete_the_word(_tw_pk_id);
+    public bool InsertTheWord(TheWordDTO? focus_the_word_item) => _InsertTheWord(focus_the_word_item);
+    public List<TheWordDTO>? SelectListTheWord() => _SelectListTheWord();
+    public bool UpdateTheWord(TheWordDTO? focus_the_word_item) => _UpdateTheWord(focus_the_word_item);
+    public bool DeleteTheWord(int _tw_pk_id) => _DeleteTheWord(_tw_pk_id);
     #endregion
 
     #region 멤버함수 정의부
-    private bool insert_the_word(TheWordDTO? focus_the_word_item)
+    private bool _InsertTheWord(TheWordDTO? focus_the_word_item)
     {
-      using (dao = new DAO_MySQL_v2())
+      using (dao = new Engine._01.DAO.MySQL_DAO_v3())
       {
         StringBuilder str_buil = new StringBuilder(1024);
         str_buil.Append("INSERT INTO twomites.THE_WORD ");
@@ -38,25 +38,25 @@ namespace TwoMites_Engine._01.DAO._02.CTheWord_DAO
       }
     }
 
-    private List<TheWordDTO>? select_list_the_word()
+    private List<TheWordDTO>? _SelectListTheWord()
     {
       List<TheWordDTO> list_the_word = new List<TheWordDTO>();
-      using (dao = new DAO_MySQL_v2())
+      using (dao = new Engine._01.DAO.MySQL_DAO_v3())
       {
-        using (var data_table = dao.GetDataTable("SELECT * FROM  twomites.THE_WORD; "))
+        using (var dataTable = dao.GetDataTable("SELECT * FROM  twomites.THE_WORD; "))
         {
 
-          for (int i = 0; i < data_table?.Rows.Count; i++)
+          for (int i = 0; i < dataTable?.Rows.Count; i++)
           {
             list_the_word.Add(new TheWordDTO(
-              int.Parse(data_table.Rows[i]["tw_pk_id"].ToString())
-              , int.Parse(data_table.Rows[i]["tw_wt_key"].ToString())
-              , data_table.Rows[i]["tw_pastor"].ToString()
-              , DateTime.Parse(data_table.Rows[i]["tw_date"].ToString())
-              , DateTime.Parse(data_table.Rows[i]["tw_created_at"].ToString())
-              , DateTime.Parse(data_table.Rows[i]["tw_modified_at"].ToString())
-              , data_table.Rows[i]["tw_title"].ToString()
-              , data_table.Rows[i]["tw_the_word"].ToString()
+              int.Parse(dataTable.Rows[i]["tw_pk_id"].ToString())
+              , int.Parse(dataTable.Rows[i]["tw_wt_key"].ToString())
+              , dataTable.Rows[i]["tw_pastor"].ToString()
+              , DateTime.Parse(dataTable.Rows[i]["tw_date"].ToString())
+              , DateTime.Parse(dataTable.Rows[i]["tw_created_at"].ToString())
+              , DateTime.Parse(dataTable.Rows[i]["tw_modified_at"].ToString())
+              , dataTable.Rows[i]["tw_title"].ToString()
+              , dataTable.Rows[i]["tw_the_word"].ToString()
               ));
           }
         }
@@ -66,9 +66,9 @@ namespace TwoMites_Engine._01.DAO._02.CTheWord_DAO
     }
 
 
-    private bool update_the_word(TheWordDTO? focus_the_word_item)
+    private bool _UpdateTheWord(TheWordDTO? focus_the_word_item)
     {
-      using (dao = new DAO_MySQL_v2())
+      using (dao = new Engine._01.DAO.MySQL_DAO_v3())
       {
         StringBuilder str_buil = new StringBuilder(1024);
         str_buil.Append("UPDATE twomites.THE_WORD ");
@@ -83,9 +83,9 @@ namespace TwoMites_Engine._01.DAO._02.CTheWord_DAO
       }
     }
 
-    private bool delete_the_word(int _tw_pk_id)
+    private bool _DeleteTheWord(int _tw_pk_id)
     {
-      using (dao = new DAO_MySQL_v2())
+      using (dao = new Engine._01.DAO.MySQL_DAO_v3())
       {
         dao.Execute($"DELETE FROM twomites.THE_WORD WHERE tw_pk_id = {_tw_pk_id};");
         return true;

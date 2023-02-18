@@ -18,12 +18,12 @@ namespace TwoMites_Engine._02.DTO._01.BibleDTO
     public DTO_BIBLE()
       : this("", "", "", "", "", "")
     { }
-    public DTO_BIBLE(string b_chapter, string b_verse, string b_descript)
-      : this("", b_chapter,b_verse, b_descript, "")
+    public DTO_BIBLE(string b_book, string b_chapter, string b_verse)
+      : this(b_book, b_chapter, b_verse, "", "")
     {
+      this.b_book = b_book;
       this.b_chapter = b_chapter;
       this.b_verse = b_verse;
-      this.b_descript = b_descript;
     }    
     public DTO_BIBLE(string b_book, string b_chapter, string b_verse, string b_descript, string b_full_descript)
     {

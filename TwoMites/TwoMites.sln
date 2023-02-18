@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoMites", "TwoMites.csproj", "{4F372D65-DB22-4AE7-B382-98B547A6C998}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoMites_Engine", "..\TwoMites_Engine\TwoMites_Engine.csproj", "{C28DBFD0-4268-4857-A6FE-0EDB029CC376}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwoMites_Engine", "..\TwoMites_Engine\TwoMites_Engine.csproj", "{C28DBFD0-4268-4857-A6FE-0EDB029CC376}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine", "..\CSharp-Engine\Engine.csproj", "{F3FCC5BA-BE72-4A65-8507-E7F56D1E71A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C28DBFD0-4268-4857-A6FE-0EDB029CC376}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C28DBFD0-4268-4857-A6FE-0EDB029CC376}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C28DBFD0-4268-4857-A6FE-0EDB029CC376}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3FCC5BA-BE72-4A65-8507-E7F56D1E71A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3FCC5BA-BE72-4A65-8507-E7F56D1E71A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3FCC5BA-BE72-4A65-8507-E7F56D1E71A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3FCC5BA-BE72-4A65-8507-E7F56D1E71A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
