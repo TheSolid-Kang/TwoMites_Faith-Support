@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TwoMites_Engine._02.DTO._03.Fellowship
 {
-  public class FELLOWSHIP_TESTIMONY
+  public class FellowshipTestimony
   {
     public int ft_pk_id;
     public int ft_f_id;

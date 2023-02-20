@@ -17,9 +17,9 @@ namespace TwoMites_Engine._01.DAO._03.CFellowship_DAO
     private const int DEFAULT_CAP = 1024;
 
     #region 멤버함수 선언부
-    /*FELLOWSHIP_DEPARTMENT 목록 가져오는 함수
+    /*FellowshipDepartmentDto 목록 가져오는 함수
      */
-    public ObservableCollection<FELLOWSHIP_DEPARTMENT> SelectListFellowshipDepartment() => _SelectListFellowshipDepartment();
+    public ObservableCollection<FellowshipDepartmentDto> SelectListFellowshipDepartment() => _SelectListFellowshipDepartment();
 
     /*Fellowship 테이블
      * 새등록(새로운 교제 등록)
@@ -29,27 +29,27 @@ namespace TwoMites_Engine._01.DAO._03.CFellowship_DAO
 
 
     #region 멤버함수 정의부
-    /*FELLOWSHIP_DEPARTMENT 목록 가져오는 함수
+    /*FellowshipDepartmentDto 목록 가져오는 함수
      */
-    private ObservableCollection<FELLOWSHIP_DEPARTMENT> _SelectListFellowshipDepartment()
+    private ObservableCollection<FellowshipDepartmentDto> _SelectListFellowshipDepartment()
     {
       StringBuilder query = new StringBuilder(DEFAULT_CAP);
-      query.Append("SELECT * FROM TwoMites.FELLOWSHIP_DEPARTMENT");
-      var list_fellowship_department = new ObservableCollection<FELLOWSHIP_DEPARTMENT>();
+      query.Append("SELECT * FROM TwoMites.FellowshipDepartmentDto");
+      var list_FellowshipDepartmentDto = new ObservableCollection<FellowshipDepartmentDto>();
       using (var dao = new Engine._01.DAO.MySQL_DAO_v3())
       {
         using (var dataTable = dao.GetDataTable(query.ToString()))
         {
           for (int i = 0; i < dataTable.Rows.Count; i++)
           {
-            list_fellowship_department.Add(new FELLOWSHIP_DEPARTMENT()
+            list_FellowshipDepartmentDto.Add(new FellowshipDepartmentDto()
             {
               fd_pk_id = int.Parse(dataTable.Rows[i]["fd_pk_id"].ToString())
               , fd_department = dataTable.Rows[i]["fd_department"].ToString()
             });
           }
           
-          return list_fellowship_department;
+          return list_FellowshipDepartmentDto;
         }
       }
       return null;

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace TwoMites_Engine._02.DTO._03.Fellowship
 {
-  public class FELLOWSHIP_PHOTO
+  public class FellowshipPhoto
   {
-
     public int fp_pk_id;
     public int fp_f_id;
     public string fp_file_ori_name;

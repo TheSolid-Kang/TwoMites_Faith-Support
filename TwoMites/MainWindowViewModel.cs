@@ -11,7 +11,7 @@ namespace TwoMites
   {
     public MainWindowViewModel()
     {
-      m_engine_two_mites?.m_bible_mgr.ToString();
+      m_engineTwoMites?.m_bible_mgr.ToString();
 
     }
     ~MainWindowViewModel()

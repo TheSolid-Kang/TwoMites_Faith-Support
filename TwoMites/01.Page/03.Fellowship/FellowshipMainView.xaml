@@ -193,7 +193,7 @@
           <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="7"  
-                  ItemsSource="{Binding bind_list_testimony}">
+                  ItemsSource="{Binding LV_ListTestimony}">
           <ListView.View >
             <GridView >
               <GridViewColumn Header="성도명" DisplayMemberBinding="{Binding ft_christian, Mode=TwoWay}" />

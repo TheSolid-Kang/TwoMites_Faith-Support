@@ -21,9 +21,9 @@ namespace TwoMites
     }
     private void initialize()
     {
-      m_engine_two_mites = new CEngine_TwoMites();
+      m_engineTwoMites = new CEngine_TwoMites();
     }
-    public CEngine_TwoMites m_engine_two_mites { get; set; }
+    public CEngine_TwoMites m_engineTwoMites { get; set; }
   }
 
 }

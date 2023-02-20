@@ -21,12 +21,12 @@ namespace TwoMites._01.Page
       Dispose();
     }
     public event PropertyChangedEventHandler? PropertyChanged;
-    protected CEngine_TwoMites? m_engine_two_mites { get; set; }
+    protected CEngine_TwoMites? m_engineTwoMites { get; set; }
     protected virtual bool ThrowOnInvalidPropertyName { get; private set; }
     private void initialize()
     {
       App? app = Application.Current as App;
-      m_engine_two_mites = app.m_engine_two_mites;
+      m_engineTwoMites = app.m_engineTwoMites;
     }
 
     [Conditional("DEBUG")]

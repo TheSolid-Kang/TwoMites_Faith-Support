@@ -20,12 +20,12 @@ namespace TwoMites._01.Page._00.Bible
   {
     public BibleMainViewModel()
     {
-      bind_list_dto_bible = new ObservableCollection<DTO_BIBLE>();
-      bind_list_testament_name = new ObservableCollection<Bible_Title>();
-      focus_bible_item = new DTO_BIBLE("창", "1", "1");
-      bind_list_dto_bible = new ObservableCollection<DTO_BIBLE>();
-      bind_list_dto_bible_summary = new ObservableCollection<DTO_BIBLE_SUMMARY>();
-      bind_list_dto_bible_contemplation = new ObservableCollection<DTO_BIBLE_CONTEMPLATION>();
+      LV_ListBibleDto = new ObservableCollection<BibleDto>();
+      LV_ListTestamentName = new ObservableCollection<BibleTitleDto>();
+      LV_FocusBibleItem = new BibleDto("창", "1", "1");
+      LV_ListBibleDto = new ObservableCollection<BibleDto>();
+      LV_ListBibleSummary = new ObservableCollection<BibleSummaryDto>();
+      LV_ListBibleContemplation = new ObservableCollection<BibleContemplationDto>();
     }
     ~BibleMainViewModel()
     {
@@ -34,79 +34,81 @@ namespace TwoMites._01.Page._00.Bible
 
 
     #region bind 변수
-    public string? bible_summary { get; set; }
-    public string? bible_contemplation { get; set; }
+    public string? TB_BibleSummary { get; set; }
+    public string? TB_BibleContemplation { get; set; }
 
-    public ObservableCollection<DTO_BIBLE>? bind_list_dto_bible { get; set; }
-    public ObservableCollection<DTO_BIBLE_SUMMARY>? bind_list_dto_bible_summary { get; set; }
-    public ObservableCollection<DTO_BIBLE_CONTEMPLATION>? bind_list_dto_bible_contemplation { get; set; }
+    public ObservableCollection<BibleDto>? LV_ListBibleDto { get; set; }
+    public ObservableCollection<BibleSummaryDto>? LV_ListBibleSummary { get; set; }
+    public ObservableCollection<BibleContemplationDto>? LV_ListBibleContemplation { get; set; }
 
-    private DTO_BIBLE _focus_bible_item;
-    public DTO_BIBLE focus_bible_item 
+    private BibleDto _LV_FocusBibleItem;
+    public BibleDto? LV_FocusBibleItem 
     { 
-      get { return _focus_bible_item; } 
-      set { 
-        _focus_bible_item = value;
+      get { return _LV_FocusBibleItem; } 
+      set 
+      { 
+        _LV_FocusBibleItem = value;
 
-        //navigate_text = $"{_focus_bible_item?.b_chapter} 장 {_focus_bible_item?.b_verse} 절 : {_focus_bible_item?.b_descript}"; 
+        //navigate_text = $"{_LV_FocusBibleItem?.b_chapter} 장 {_LV_FocusBibleItem?.b_verse} 절 : {_LV_FocusBibleItem?.b_descript}"; 
         //광긇하면 터지는 부분
         //임시방편으로 만듦
-        update_list_dto_bible_summary.Execute(null);
-        update_list_dto_bible_contemplation.Execute(null);
+        UpdateListBibleSummaryDto.Execute(null);
+        UpdateListBibleContemplationDto.Execute(null);
 
-        NotifyPropertyChanged(nameof(focus_bible_item)); 
+        NotifyPropertyChanged(nameof(LV_FocusBibleItem)); 
       } 
     }
 
-    private Bible_Title _focus_testament_item;
-    public Bible_Title focus_testament_item
+    private BibleTitleDto _LV_FocusTestamentItem;
+    public BibleTitleDto LV_FocusTestamentItem
     {
-      get { return _focus_testament_item; }
+      get { return _LV_FocusTestamentItem; }
       set
       {
-        _focus_testament_item = value;
+        _LV_FocusTestamentItem = value;
 
-        update_list_dto_bible?.Execute(null);
+        UpdateListBibleDto?.Execute(null);
 
-        NotifyPropertyChanged(nameof(focus_testament_item));
+        NotifyPropertyChanged(nameof(LV_FocusTestamentItem));
       }
     }
-    private ObservableCollection<Bible_Title> _bind_list_testament_name;
-    public ObservableCollection<Bible_Title> bind_list_testament_name
+
+    private ObservableCollection<BibleTitleDto> _LV_ListTestamentName;
+    public ObservableCollection<BibleTitleDto> LV_ListTestamentName
     { 
-      get { return _bind_list_testament_name; } 
+      get { return _LV_ListTestamentName; } 
       set 
       { 
-        _bind_list_testament_name = value;
+        _LV_ListTestamentName = value;
         using (CBible_DAO dao = new CBible_DAO())
         {
-          _bind_list_testament_name = dao.SelectBibleTitle();
+          _LV_ListTestamentName = dao.SelectBibleTitle();
         }
-        NotifyPropertyChanged(nameof(bind_list_testament_name)); 
+        NotifyPropertyChanged(nameof(LV_ListTestamentName)); 
       }
     }
     #endregion
 
 
     #region Command
-    public ICommand update_list_testament_name => new CDelegateCommand((object _obj) =>
+    public ICommand UpdateListTestamentName => new CDelegateCommand((object _obj) =>
     {
-      bind_list_dto_bible?.Clear();
+      LV_ListBibleDto?.Clear();
       using (CBible_DAO dao = new CBible_DAO())
       {
-        _bind_list_testament_name = dao.SelectBibleTitle();
+        _LV_ListTestamentName = dao.SelectBibleTitle();
       }
-      NotifyPropertyChanged(nameof(bind_list_testament_name));
+      NotifyPropertyChanged(nameof(LV_ListTestamentName));
     });
 
     //권에 맞는 성경 출력
-    public ICommand update_list_dto_bible => new CDelegateCommand( (object _obj) => 
+    public ICommand UpdateListBibleDto => new CDelegateCommand( (object _obj) => 
       {
-        bind_list_dto_bible?.Clear();
+        LV_ListBibleDto?.Clear();
         using (CBible_DAO dao = new CBible_DAO())
         {
-          bind_list_dto_bible = dao.SelectBible(focus_testament_item.bt_name_key);
-          Func<string, string> apply_new_line = (string _str_bible) => {
+          LV_ListBibleDto = dao.SelectBible(LV_FocusTestamentItem.bt_name_key);
+          Func<string, string> applyNewLine = (string _str_bible) => {
             StringBuilder str_buil = new StringBuilder(512);
             const int DEFAULT_NEW_LINE_INDEX = 35;
             int i = 0;
@@ -121,65 +123,65 @@ namespace TwoMites._01.Page._00.Bible
             return str_buil.ToString();
           };
 
-          for (int i = 0; i < bind_list_dto_bible.Count; ++i)
+          for (int i = 0; i < LV_ListBibleDto.Count; ++i)
           {
-            bind_list_dto_bible[i].b_descript = apply_new_line(bind_list_dto_bible[i].b_descript);
+            LV_ListBibleDto[i].b_descript = applyNewLine(LV_ListBibleDto[i].b_descript);
           }
         }
 
-        NotifyPropertyChanged(nameof(bind_list_dto_bible));
+        NotifyPropertyChanged(nameof(LV_ListBibleDto));
 
       } );
 
     //성경 줄거리 목록 출력
-    public ICommand update_list_dto_bible_summary => new CDelegateCommand( (object _obj) => 
+    public ICommand UpdateListBibleSummaryDto => new CDelegateCommand( (object _obj) => 
       {
-        bind_list_dto_bible_summary?.Clear();
+        LV_ListBibleSummary?.Clear();
         using (CBible_DAO dao = new CBible_DAO())
         {
-          bind_list_dto_bible_summary = dao.SelectBibleSummary(focus_bible_item?.b_book, focus_bible_item?.b_chapter, focus_bible_item?.b_verse);
+          LV_ListBibleSummary = dao.SelectBibleSummary(LV_FocusBibleItem?.b_book, LV_FocusBibleItem?.b_chapter, LV_FocusBibleItem?.b_verse);
         }
 
 
-        NotifyPropertyChanged(nameof(bind_list_dto_bible_summary));
-        bible_summary = "";
-        NotifyPropertyChanged(nameof(bible_summary));
+        NotifyPropertyChanged(nameof(LV_ListBibleSummary));
+        TB_BibleSummary = "";
+        NotifyPropertyChanged(nameof(TB_BibleSummary));
       });
     //성경 묵상 목록 출력
-    public ICommand update_list_dto_bible_contemplation => new CDelegateCommand( (object _obj) => 
+    public ICommand UpdateListBibleContemplationDto => new CDelegateCommand( (object _obj) => 
       {
-        bind_list_dto_bible_contemplation?.Clear();
+        LV_ListBibleContemplation?.Clear();
         using (CBible_DAO dao = new CBible_DAO())
         {
-          bind_list_dto_bible_contemplation = dao.SelectBibleContemplation(focus_bible_item?.b_book, focus_bible_item?.b_chapter, focus_bible_item?.b_verse);
+          LV_ListBibleContemplation = dao.SelectBibleContemplation(LV_FocusBibleItem?.b_book, LV_FocusBibleItem?.b_chapter, LV_FocusBibleItem?.b_verse);
         }
-        NotifyPropertyChanged(nameof(bind_list_dto_bible_contemplation));
-        bible_contemplation = "";
-        NotifyPropertyChanged(nameof(bible_contemplation));
+        NotifyPropertyChanged(nameof(LV_ListBibleContemplation));
+        TB_BibleContemplation = "";
+        NotifyPropertyChanged(nameof(TB_BibleContemplation));
       });
 
 
     //성경 줄거리 입력
-    public ICommand insert_bible_summary => new CDelegateCommand((object _obj) => 
+    public ICommand InserBibleSummary => new CDelegateCommand((object _obj) => 
     { 
-      bind_list_dto_bible_summary = new ObservableCollection<DTO_BIBLE_SUMMARY>();
+      LV_ListBibleSummary = new ObservableCollection<BibleSummaryDto>();
       using (CBible_DAO dao = new CBible_DAO())
       {
-        dao.InsertBibleSummary(focus_bible_item.b_book, focus_bible_item.b_chapter, focus_bible_item.b_verse, bible_summary);
+        dao.InsertBibleSummary(LV_FocusBibleItem.b_book, LV_FocusBibleItem.b_chapter, LV_FocusBibleItem.b_verse, TB_BibleSummary);
       }
-      bible_summary = "";
-      NotifyPropertyChanged(nameof(bible_summary));
+      TB_BibleSummary = "";
+      NotifyPropertyChanged(nameof(TB_BibleSummary));
     });
     //성경 묵상 입력
-    public ICommand insert_bible_contemplation => new CDelegateCommand((object _obj) => 
+    public ICommand InsertBibleContemplation => new CDelegateCommand((object _obj) => 
     {
-      bind_list_dto_bible_contemplation = new ObservableCollection<DTO_BIBLE_CONTEMPLATION>();
+      LV_ListBibleContemplation = new ObservableCollection<BibleContemplationDto>();
       using (CBible_DAO dao = new CBible_DAO())
       {
-        dao.InsertBibleContemplation(focus_bible_item.b_book, focus_bible_item.b_chapter, focus_bible_item.b_verse, bible_summary);
+        dao.InsertBibleContemplation(LV_FocusBibleItem.b_book, LV_FocusBibleItem.b_chapter, LV_FocusBibleItem.b_verse, TB_BibleContemplation);
       }
-      bible_contemplation = "";
-      NotifyPropertyChanged(nameof(bible_contemplation));
+      TB_BibleContemplation = "";
+      NotifyPropertyChanged(nameof(TB_BibleContemplation));
     });
     
     //220618_tk_ 사이드 메뉴 
@@ -187,10 +189,10 @@ namespace TwoMites._01.Page._00.Bible
     {
       get
       {
-        ObservableCollection<CCommander> list_commander = new ObservableCollection<CCommander>();
-        list_commander.Add(new CCommander("까꿍", new CDelegateCommand((object _obj) => { MessageBox.Show("까꿍이"); }))); //까꿍이
-        list_commander.Add(new CCommander());     //empty 커맨드 안내
-        return list_commander;
+        ObservableCollection<CCommander> obsCommander = new ObservableCollection<CCommander>();
+        obsCommander.Add(new CCommander("까꿍", new CDelegateCommand((object _obj) => { MessageBox.Show("까꿍이"); }))); //까꿍이
+        obsCommander.Add(new CCommander());     //empty 커맨드 안내
+        return obsCommander;
       }
     }
 

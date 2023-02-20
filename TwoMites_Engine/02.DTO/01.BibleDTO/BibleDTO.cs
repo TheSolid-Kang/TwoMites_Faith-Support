@@ -6,26 +6,24 @@ using System.Threading.Tasks;
 
 namespace TwoMites_Engine._02.DTO._01.BibleDTO
 {
-  public class BibleDTO
+  public enum EDTO_BIBLE : int
   {
+    b_id, b_book, b_chapter
+  , b_verse, b_descript, b_full_descript
   }
-  public enum EDTO_BIBLE : int {
-  b_id ,b_book ,b_chapter
-  ,b_verse  ,b_descript ,b_full_descript
-}
-  public class DTO_BIBLE
+  public class BibleDto
   {
-    public DTO_BIBLE()
+    public BibleDto()
       : this("", "", "", "", "", "")
     { }
-    public DTO_BIBLE(string b_book, string b_chapter, string b_verse)
+    public BibleDto(string b_book, string b_chapter, string b_verse)
       : this(b_book, b_chapter, b_verse, "", "")
     {
       this.b_book = b_book;
       this.b_chapter = b_chapter;
       this.b_verse = b_verse;
-    }    
-    public DTO_BIBLE(string b_book, string b_chapter, string b_verse, string b_descript, string b_full_descript)
+    }
+    public BibleDto(string b_book, string b_chapter, string b_verse, string b_descript, string b_full_descript)
     {
       this.b_book = b_book;
       this.b_chapter = b_chapter;
@@ -33,8 +31,8 @@ namespace TwoMites_Engine._02.DTO._01.BibleDTO
       this.b_descript = b_descript;
       this.b_full_descript = b_full_descript;
     }
-    public DTO_BIBLE(string b_id, string b_book, string b_chapter, string b_verse, string b_descript, string b_full_descript)
-      :this(b_book, b_chapter, b_verse, b_descript, b_full_descript)
+    public BibleDto(string b_id, string b_book, string b_chapter, string b_verse, string b_descript, string b_full_descript)
+      : this(b_book, b_chapter, b_verse, b_descript, b_full_descript)
     {
       this.b_id = b_id;
     }
@@ -46,15 +44,15 @@ namespace TwoMites_Engine._02.DTO._01.BibleDTO
     public string? b_full_descript { get; set; }
   }
 
-  public class DTO_BIBLE_SUMMARY
+  public class BibleSummaryDto
   {
-    public DTO_BIBLE_SUMMARY()
+    public BibleSummaryDto()
       : this(DateTime.Now, "", "", "", "")
     { }
-    public DTO_BIBLE_SUMMARY(DateTime bs_date, string bs_descript)
-      : this(bs_date,"","","",bs_descript)
+    public BibleSummaryDto(DateTime bs_date, string bs_descript)
+      : this(bs_date, "", "", "", bs_descript)
     { }
-    public DTO_BIBLE_SUMMARY(DateTime bs_date
+    public BibleSummaryDto(DateTime bs_date
     , string bs_book
     , string bs_chapter
     , string bs_verse
@@ -74,15 +72,15 @@ namespace TwoMites_Engine._02.DTO._01.BibleDTO
     public string? bs_descript { get; set; }
   }
 
-  public class DTO_BIBLE_CONTEMPLATION
+  public class BibleContemplationDto
   {
-    public DTO_BIBLE_CONTEMPLATION()
+    public BibleContemplationDto()
       : this(DateTime.Now, "", "", "", "")
     { }
-    public DTO_BIBLE_CONTEMPLATION(DateTime bc_date, string bc_descript)
+    public BibleContemplationDto(DateTime bc_date, string bc_descript)
       : this(bc_date, "", "", "", bc_descript)
     { }
-    public DTO_BIBLE_CONTEMPLATION(DateTime bc_date
+    public BibleContemplationDto(DateTime bc_date
     , string bc_book
     , string bc_chapter
     , string bc_verse

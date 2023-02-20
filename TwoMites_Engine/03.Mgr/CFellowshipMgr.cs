@@ -26,6 +26,6 @@ namespace TwoMites_Engine._03.Mgr
     {
       return true;
     }
-    public ObservableCollection<FELLOWSHIP_DEPARTMENT>? SelectListFellowshipDepartment() => dao.SelectListFellowshipDepartment();
+    public ObservableCollection<FellowshipDepartmentDto>? SelectListFellowshipDepartment() => dao.SelectListFellowshipDepartment();
   }
 }

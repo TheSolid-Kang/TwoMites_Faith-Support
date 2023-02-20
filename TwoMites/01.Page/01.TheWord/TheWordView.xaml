@@ -36,8 +36,8 @@
     <Grid Background="#FFDCDCE0" Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" 
           Panel.ZIndex="1">
       <ListBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" Width="Auto" 
-                  ItemsSource="{Binding bind_list_dto_the_word}"
-                  SelectedItem="{Binding focus_the_word_item, Mode=TwoWay}" >
+                  ItemsSource="{Binding LV_ListTheWordDto}"
+                  SelectedItem="{Binding LV_focusTheWordItem, Mode=TwoWay}" >
         <ListBox.ItemTemplate>
           <DataTemplate>
             <WrapPanel>
@@ -115,30 +115,27 @@
           </Grid.ColumnDefinitions>
           <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Content="목사님" Background="white"/>
           <TextBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2" 
-                   Text="{Binding Path=focus_the_word_item.tw_pastor, Mode=TwoWay}"  
+                   Text="{Binding Path=LV_focusTheWordItem.tw_pastor, Mode=TwoWay}"  
                  Background="White"/>
 
           <DatePicker Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="2" 
                       Background="White"
                       HorizontalAlignment="Left" 
                       VerticalContentAlignment="Center"
-                      SelectedDate="{Binding focus_the_word_item.tw_date}"/>
+                      SelectedDate="{Binding LV_focusTheWordItem.tw_date}"/>
 
-          <!--SelectedDate="{Binding SelectedDate}"/>-->
-
-          
           
           <Label Grid.Row="4" Grid.Column="0" Margin="2" Grid.RowSpan="3" Background="AntiqueWhite"
                HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
                Content="title: "/>
-          <TextBox Text="{Binding Path=focus_the_word_item.tw_title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+          <TextBox Text="{Binding Path=LV_focusTheWordItem.tw_title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
                  Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="6" Background="AntiqueWhite"
                  AcceptsReturn="True"/>
         </Grid>
 
 
 
-        <TextBox Text="{Binding Path=focus_the_word_item.tw_the_word, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+        <TextBox Text="{Binding Path=LV_focusTheWordItem.tw_the_word, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
                  Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="7" Background="White"
                  AcceptsReturn="True"/>
         <Button Command="{Binding CreateTheWord}"  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Content="새등록"/>
@@ -164,22 +161,6 @@
           <ColumnDefinition Width="*" />
           <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-<!--
-        <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" HorizontalAlignment="Center" Width="Auto"  ItemsSource="{Binding bind_list_dto_bible_summary}">
-          <ListView.View >
-            <GridView >
-              <GridViewColumn Header="date" DisplayMemberBinding="{Binding bs_date, Mode=TwoWay}" Width="100"/>
-              <GridViewColumn Header="summary" DisplayMemberBinding="{Binding bs_descript, Mode=TwoWay}" Width="410"/>
-            </GridView>
-          </ListView.View>
-          <ListView.ItemContainerStyle >
-            <Style TargetType="ListViewItem" />
-          </ListView.ItemContainerStyle>
-        </ListView>
-        <TextBox Grid.Row="5" Grid.Column="0"  Grid.RowSpan="2" Grid.ColumnSpan="6"   
-                 AcceptsReturn="True" Text="{Binding Path=bible_summary, Mode=TwoWay}" />
-        <Button Command="{Binding insert_bible_summary}" Content="작성" Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" />
--->
       </Grid>
 
     </Grid>

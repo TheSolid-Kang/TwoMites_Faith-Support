@@ -33,40 +33,9 @@
     </Grid>
 
     <Grid Background="#FFDCDCE0" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4">
-      <!--<StackPanel VerticalAlignment="Center" Orientation="Vertical" Height="auto">
-      </StackPanel>-->
-
-      <!--
-        <ScrollViewer   Width="auto" Height="auto" CanContentScroll="True">
-
-
-          <TreeView ItemsSource="{Binding bind_list_old_testament_name}">
-            <TreeView.ItemTemplate>
-              <HierarchicalDataTemplate >
-                <TreeViewItem Header="구약성경" IsExpanded="True">
-                  <TreeViewItem.ItemTemplate>
-                    <HierarchicalDataTemplate>
-                      <TreeViewItem Header="{Binding bind_list_old_testament_name}"/>
-                    </HierarchicalDataTemplate>
-                  </TreeViewItem.ItemTemplate>
-                </TreeViewItem>
-              </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
-          </TreeView>
-        </ScrollViewer>
-        <ScrollViewer   Width="auto" Height="auto"  CanContentScroll="True">
-          <TreeView Height="auto">
-            <TreeViewItem Header="신약성경" IsExpanded="True">
-              <TreeViewItem Header="마태복음" />
-              <TreeViewItem Header="마가복음" />
-            </TreeViewItem>
-          </TreeView>
-        </ScrollViewer>
-        -->
-
       <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" HorizontalAlignment="Center" Width="Auto" 
-                  ItemsSource="{Binding bind_list_testament_name}"  
-                  SelectedItem="{Binding focus_testament_item, Mode=TwoWay}"
+                  ItemsSource="{Binding LV_ListTestamentName}"  
+                  SelectedItem="{Binding LV_FocusTestamentItem, Mode=TwoWay}"
                       VerticalContentAlignment="Stretch" >
         <ListView.View >
           <GridView >
@@ -122,8 +91,8 @@
         </Grid.ColumnDefinitions>
 
         <ListView Name="lv_bible" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" HorizontalAlignment="Center" Width="Auto" 
-                  ItemsSource="{Binding bind_list_dto_bible}" 
-                  SelectedItem="{Binding focus_bible_item, Mode=TwoWay}" 
+                  ItemsSource="{Binding LV_ListBibleDto}" 
+                  SelectedItem="{Binding LV_FocusBibleItem, Mode=TwoWay}" 
                       VerticalContentAlignment="Stretch" >
           <ListView.View >
             <GridView AllowsColumnReorder="True" >
@@ -157,7 +126,7 @@
         </Grid.ColumnDefinitions>
 
         <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7"  
-                  Width="Auto"  ItemsSource="{Binding bind_list_dto_bible_summary}">
+                  Width="Auto"  ItemsSource="{Binding LV_ListBibleSummary}">
           <ListView.View >
             <GridView >
               <GridViewColumn Header="date" DisplayMemberBinding="{Binding bs_date, Mode=TwoWay}" />
@@ -169,8 +138,8 @@
           </ListView.ItemContainerStyle>
         </ListView>
         <TextBox Grid.Row="5" Grid.Column="0"  Grid.RowSpan="2" Grid.ColumnSpan="6"   
-                 AcceptsReturn="True" Text="{Binding Path=bible_summary, Mode=TwoWay}" />
-        <Button Command="{Binding insert_bible_summary}" Content="작성" Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" />
+                 AcceptsReturn="True" Text="{Binding Path=TB_BibleSummary, Mode=TwoWay}" />
+        <Button Command="{Binding InserBibleSummary}" Content="작성" Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" />
 
       </Grid>
       
@@ -193,7 +162,7 @@
           <ColumnDefinition Width="*" />
           <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7"   ItemsSource="{Binding bind_list_dto_bible_contemplation}">
+        <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7"   ItemsSource="{Binding LV_ListBibleContemplation}">
           <ListView.View >
             <GridView >
               <GridViewColumn Header="date" DisplayMemberBinding="{Binding bc_date, Mode=TwoWay}" />
@@ -205,8 +174,8 @@
           </ListView.ItemContainerStyle>
         </ListView>
         <TextBox Grid.Row="5" Grid.Column="0"  Grid.RowSpan="2" Grid.ColumnSpan="6"   
-                 AcceptsReturn="True" Text="{Binding Path=bible_contemplation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-        <Button Command="{Binding insert_bible_contemplation}" Content="작성" Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" />
+                 AcceptsReturn="True" Text="{Binding Path=TB_BibleContemplation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+        <Button Command="{Binding InsertBibleContemplation}" Content="작성" Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" />
       </Grid>
     </Grid>
   </Grid>

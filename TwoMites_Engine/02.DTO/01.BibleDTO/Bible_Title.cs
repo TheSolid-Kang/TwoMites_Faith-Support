@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TwoMites_Engine._02.DTO._01.BibleDTO
 {
-  public class Bible_Title
+  public class BibleTitleDto
   {
-    public Bible_Title()
+    public BibleTitleDto()
       : this("","","")
     { }
 
-    public Bible_Title(string bt_id, string bt_name, string bt_name_key)
+    public BibleTitleDto(string bt_id, string bt_name, string bt_name_key)
     {
       this.bt_id = bt_id;
       this.bt_name = bt_name;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Engine._03.CFRPMgr;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -30,7 +31,7 @@ namespace TwoMites._01.Page._03.Fellowship
     private ImageSource? _thumb_img_2;
     private ImageSource? _ori_img;
 
-    private ObservableCollection<FELLOWSHIP_DEPARTMENT>? _list_department;
+    private ObservableCollection<FellowshipDepartmentDto>? _list_department;
     private string _cur_f_department;
 
     private string _cur_gender;
@@ -88,7 +89,7 @@ namespace TwoMites._01.Page._03.Fellowship
       }
     }
 
-    public ObservableCollection<FELLOWSHIP_DEPARTMENT>? list_department
+    public ObservableCollection<FellowshipDepartmentDto>? list_department
     {
       get => _list_department;
       set
@@ -150,20 +151,20 @@ namespace TwoMites._01.Page._03.Fellowship
     {
       get
       {
-        ObservableCollection<CCommander> list_commander = new ObservableCollection<CCommander>();
-        list_commander.Add(new CCommander("까꿍", new CDelegateCommand((object _obj) => { MessageBox.Show("까꿍이"); }))); //까꿍이
-        list_commander.Add(new CCommander());     //empty 커맨드 안내
-        list_commander.Add(new CCommander("새등록", new CDelegateCommand((object _obj) => {
+        ObservableCollection<CCommander> obsCommander = new ObservableCollection<CCommander>();
+        obsCommander.Add(new CCommander("까꿍", new CDelegateCommand((object _obj) => { MessageBox.Show("까꿍이"); }))); //까꿍이
+        obsCommander.Add(new CCommander());     //empty 커맨드 안내
+        obsCommander.Add(new CCommander("새등록", new CDelegateCommand((object _obj) => {
           //새로운 교제 등록
           //1. 교제 인스턴스 생성
-          FELLOWSHIP fellowship = new();
+          FellowshipDto fellowship = new();
 
 
           //2. 
 
           //3. 
         })));     //empty 커맨드 안내
-        return list_commander;
+        return obsCommander;
       }
     }
 

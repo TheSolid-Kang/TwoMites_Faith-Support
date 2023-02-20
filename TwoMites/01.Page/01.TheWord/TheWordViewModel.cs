@@ -19,31 +19,31 @@ namespace TwoMites._01.Page._01.TheWord
   {
     public TheWordViewModel()
     {
-      _bind_list_dto_the_word = new ObservableCollection<TheWordDTO>();
-      _focus_the_word_item = new TheWordDTO();
-      _focus_the_word_item.tw_wt_key = 1; // 1 == 주일말씀
+      _LV_ListTheWordDto = new ObservableCollection<TheWordDTO>();
+      _LV_focusTheWordItem = new TheWordDTO();
+      _LV_focusTheWordItem.tw_wt_key = 1; // 1 == 주일말씀
       refresh_the_word_list();
     }
 
     #region bind 변수
-    public ObservableCollection<TheWordDTO> _bind_list_dto_the_word;
-    public ObservableCollection<TheWordDTO>? bind_list_dto_the_word 
+    public ObservableCollection<TheWordDTO> _LV_ListTheWordDto;
+    public ObservableCollection<TheWordDTO>? LV_ListTheWordDto 
     { 
-      get => _bind_list_dto_the_word;
+      get => _LV_ListTheWordDto;
       set 
       { 
-        _bind_list_dto_the_word = value; 
-        NotifyPropertyChanged(nameof(bind_list_dto_the_word)); 
+        _LV_ListTheWordDto = value; 
+        NotifyPropertyChanged(nameof(LV_ListTheWordDto)); 
       } 
     }
-    private TheWordDTO _focus_the_word_item;
-    public TheWordDTO? focus_the_word_item
+    private TheWordDTO _LV_focusTheWordItem;
+    public TheWordDTO? LV_focusTheWordItem
     {
-      get { return _focus_the_word_item; }
+      get { return _LV_focusTheWordItem; }
       set
       {
-        _focus_the_word_item = value; //V
-        NotifyPropertyChanged(nameof(focus_the_word_item));
+        _LV_focusTheWordItem = value; //V
+        NotifyPropertyChanged(nameof(LV_focusTheWordItem));
       }
     }
 
@@ -55,42 +55,42 @@ namespace TwoMites._01.Page._01.TheWord
     {
       get
       {
-        ObservableCollection<CCommander> list_commander = new ObservableCollection<CCommander>();
-        list_commander.Add(new CCommander("새등록", CreateTheWord));
-        list_commander.Add(new CCommander("저장", SaveTheWord)); 
-        list_commander.Add(new CCommander("삭제", DeleteTheWord));  
-        return list_commander;
+        ObservableCollection<CCommander> obsCommander = new ObservableCollection<CCommander>();
+        obsCommander.Add(new CCommander("새등록", CreateTheWord));
+        obsCommander.Add(new CCommander("저장", SaveTheWord)); 
+        obsCommander.Add(new CCommander("삭제", DeleteTheWord));  
+        return obsCommander;
       }
     }
     public ICommand CreateTheWord => new CDelegateCommand((object _obj) =>
     {
-      _focus_the_word_item = new TheWordDTO();
-      _focus_the_word_item.tw_wt_key = 1; // 1 == 주일말씀
+      _LV_focusTheWordItem = new TheWordDTO();
+      _LV_focusTheWordItem.tw_wt_key = 1; // 1 == 주일말씀
       using (var dao = new CTheWord_DAO())
-        dao.InsertTheWord(focus_the_word_item);
+        dao.InsertTheWord(LV_focusTheWordItem);
 
       refresh_the_word_list();
-      focus_the_word_item = _bind_list_dto_the_word.Reverse().ToArray()[0];
+      LV_focusTheWordItem = _LV_ListTheWordDto.Reverse().ToArray()[0];
     });
     public ICommand SaveTheWord => new CDelegateCommand((object _obj) =>
     {
-      int tw_pk_id = _focus_the_word_item.tw_pk_id;
+      int tw_pk_id = _LV_focusTheWordItem.tw_pk_id;
       using (var dao = new CTheWord_DAO())
-        dao.UpdateTheWord(focus_the_word_item);
+        dao.UpdateTheWord(LV_focusTheWordItem);
 
       refresh_the_word_list();
       //220710_tk 왜 안 돼는지 모름 일단 보류
-      //focus_the_word_item = _bind_list_dto_the_word.Where(element => element.tw_pk_id == tw_pk_id).Select(element => new TheWordDTO(element)) as TheWordDTO;
-      foreach(var element in _bind_list_dto_the_word)
+      //LV_focusTheWordItem = _LV_ListTheWordDto.Where(element => element.tw_pk_id == tw_pk_id).Select(element => new TheWordDTO(element)) as TheWordDTO;
+      foreach(var element in _LV_ListTheWordDto)
         if (element.tw_pk_id == tw_pk_id)
-          focus_the_word_item = element;
+          LV_focusTheWordItem = element;
     });
     public ICommand DeleteTheWord => new CDelegateCommand((object _obj) => {
       using (var dao = new CTheWord_DAO())
-        dao.DeleteTheWord(_focus_the_word_item != null ? _focus_the_word_item.tw_pk_id : 0);
+        dao.DeleteTheWord(_LV_focusTheWordItem != null ? _LV_focusTheWordItem.tw_pk_id : 0);
       refresh_the_word_list();
-      if(_bind_list_dto_the_word.Count > 0)
-       focus_the_word_item = bind_list_dto_the_word?.ElementAt(0);
+      if(_LV_ListTheWordDto.Count > 0)
+       LV_focusTheWordItem = LV_ListTheWordDto?.ElementAt(0);
     });
     public ICommand CancelWriteTheWord => new CDelegateCommand((object _obj) =>
     {
@@ -101,15 +101,15 @@ namespace TwoMites._01.Page._01.TheWord
     #region
     private bool refresh_the_word_list()
     {
-      bind_list_dto_the_word?.Clear();
-      bind_list_dto_the_word = null;
+      LV_ListTheWordDto?.Clear();
+      LV_ListTheWordDto = null;
       using (var dao = new CTheWord_DAO())
       {
         var list_the_word = dao.SelectListTheWord();
         //220710_tk list를 날짜별로 정렬헤서 ObservableCollection 만듦
-        bind_list_dto_the_word = new ObservableCollection<TheWordDTO>(list_the_word?.OrderBy(element => element?.tw_date));
+        LV_ListTheWordDto = new ObservableCollection<TheWordDTO>(list_the_word?.OrderBy(element => element?.tw_date));
       }
-      return _bind_list_dto_the_word != null ? true: false;
+      return _LV_ListTheWordDto != null ? true: false;
     }
 
 
@@ -125,10 +125,10 @@ namespace TwoMites._01.Page._01.TheWord
       string[] arr_search_keyword = SearchKeyword.Split(ch_split);
 
 
-      var list_the_word = (from element in bind_list_dto_the_word
+      var list_the_word = (from element in LV_ListTheWordDto
                            where element.tw_the_word.Contains(arr_search_keyword[0].Trim())
                            select element).ToList();
-      bind_list_dto_the_word = new ObservableCollection<TheWordDTO>(list_the_word);
+      LV_ListTheWordDto = new ObservableCollection<TheWordDTO>(list_the_word);
 
     });
     #endregion
