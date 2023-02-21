@@ -14,13 +14,7 @@
       <HintPath>C:\Program Files (x86)\dotnet\shared\Microsoft.WindowsDesktop.App\6.0.13\System.Drawing.Common.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms">
-      <HintPath>..\TwoMites\bin\Debug\net6.0-windows\System.Windows.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Forms.DataVisualization">
-      <HintPath>..\TwoMites\bin\Debug\net6.0-windows\System.Windows.Forms.DataVisualization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Forms.DataVisualization.Design">
-      <HintPath>..\TwoMites\bin\Debug\net6.0-windows\System.Windows.Forms.DataVisualization.Design.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\dotnet\shared\Microsoft.WindowsDesktop.App\6.0.13\System.Windows.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
 
