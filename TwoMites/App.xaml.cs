@@ -9,21 +9,21 @@ using TwoMites_Engine._00.CEngine_TwoMites;
 
 namespace TwoMites
 {
-  /// <summary>
-  /// Interaction logic for App.xaml
-  /// </summary>
-  public partial class App : Application
-  {
-    public App()
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : Application
     {
-      System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(App));
-      initialize();
+        public App()
+        {
+            System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(App));
+            initialize();
+        }
+        private void initialize()
+        {
+            m_engineTwoMites = new CEngine_TwoMites();
+        }
+        public CEngine_TwoMites m_engineTwoMites { get; set; }
     }
-    private void initialize()
-    {
-      m_engineTwoMites = new CEngine_TwoMites();
-    }
-    public CEngine_TwoMites m_engineTwoMites { get; set; }
-  }
 
 }

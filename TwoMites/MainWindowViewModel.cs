@@ -7,19 +7,19 @@ using TwoMites._01.Page;
 
 namespace TwoMites
 {
-  internal class MainWindowViewModel : ViewModelBase
-  {
-    public MainWindowViewModel()
+    internal class MainWindowViewModel : ViewModelBase
     {
-      m_engineTwoMites?.m_bible_mgr.ToString();
+        public MainWindowViewModel()
+        {
+            m_engineTwoMites?.m_bible_mgr.ToString();
+
+        }
+        ~MainWindowViewModel()
+        {
+
+        }
+
+
 
     }
-    ~MainWindowViewModel()
-    {
-
-    }
-
-
-
-  }
 }
