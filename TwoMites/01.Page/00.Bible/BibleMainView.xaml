@@ -8,10 +8,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="1200"
              Loaded="Load" Unloaded="UnLoad"
+             xmlns:ccommon="clr-namespace:TwoMites._02.CCommon"
              >
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -30,7 +31,8 @@
         </Grid.ColumnDefinitions>
 
         <Grid Background="White" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="7">
-
+            <ccommon:SearchView x:Name="CCommon_SearchView"
+                                Padding="10" Margin="10" Background="SkyBlue"></ccommon:SearchView>
         </Grid>
 
         <Grid Background="#FFDCDCE0" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4">
@@ -91,12 +93,15 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <ListView Name="lv_bible" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" HorizontalAlignment="Center" Width="Auto" 
+                <ListView Name="lv_bible" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" 
+                          HorizontalAlignment="Center" Width="Auto" 
                   ItemsSource="{Binding LV_ListBibleDto}" 
                   SelectedItem="{Binding LV_FocusBibleItem, Mode=TwoWay}" 
+                          
                       VerticalContentAlignment="Stretch" >
                     <ListView.View >
-                        <GridView AllowsColumnReorder="True" >
+                        <GridView AllowsColumnReorder="True"  >
+                            <GridViewColumn Header="성경" DisplayMemberBinding="{Binding b_book, Mode=TwoWay}" Width="auto"/>
                             <GridViewColumn Header="장" DisplayMemberBinding="{Binding b_chapter, Mode=TwoWay}" Width="auto"/>
                             <GridViewColumn Header="절" DisplayMemberBinding="{Binding b_verse, Mode=TwoWay}" Width="auto" />
                             <GridViewColumn Header="구절" DisplayMemberBinding="{Binding b_descript, Mode=TwoWay}" Width="410" />

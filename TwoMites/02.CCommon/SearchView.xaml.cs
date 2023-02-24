@@ -40,6 +40,11 @@ namespace TwoMites._02.CCommon
 
         }
 
+        public void SetDataContext(ViewModelBase _viewModelBase) 
+        {
+            DataContext = _viewModelBase;
+        }
+
         public void Dispose()
         {
             GC.SuppressFinalize(true);

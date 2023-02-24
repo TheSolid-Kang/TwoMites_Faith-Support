@@ -11,6 +11,7 @@ using System.Windows.Input;
 using TwoMites_Engine._01.DAO;
 using TwoMites_Engine._01.DAO._01.CBible_DAO;
 using TwoMites_Engine._02.DTO._01.BibleDTO;
+using TwoMites_Engine._02.DTO._02.TheWord;
 using TwoMites_Engine._99.Headers;
 
 namespace TwoMites._01.Page._00.Bible
@@ -200,6 +201,27 @@ namespace TwoMites._01.Page._00.Bible
         }
 
         #endregion
+        #region search bind 변수
+        public DateTime DP_SearchFromDate { get; set; }
+        public DateTime DP_SearchToDate { get; set; }
+        public bool CB_IsSearchAll { get; set; } = true;
 
+        public string TB_SearchKeyword { get; set; }
+        public ICommand Search => new CDelegateCommand((object _obj) =>
+        {
+            LV_ListBibleDto?.Clear();
+            char[] chDelimiter = { ',' };
+            List<string> listSearchKeword = TB_SearchKeyword.Split(chDelimiter).ToList();
+            for(int i = 0; i < listSearchKeword.Count; ++i)
+                listSearchKeword[i] = listSearchKeword[i].Trim();
+
+            using (CBible_DAO dao = new CBible_DAO())
+            {
+                LV_ListBibleDto = dao.SelectSearchedBible(listSearchKeword, CB_IsSearchAll);
+            }
+
+            NotifyPropertyChanged(nameof(LV_ListBibleDto));
+        });
+        #endregion
     }
 }

@@ -116,15 +116,15 @@ namespace TwoMites._01.Page._01.TheWord
 
         #endregion
         #region search bind 변수
-        public DateTime SearchFromDate { get; set; }
-        public DateTime SearchToDate { get; set; }
-        public bool IsSearchAll { get; set; } = true;
+        public DateTime DP_SearchFromDate { get; set; }
+        public DateTime DP_SearchToDate { get; set; }
+        public bool CB_IsSearchAll { get; set; } = true;
 
-        public string SearchKeyword { get; set; }
+        public string TB_SearchKeyword { get; set; }
         public ICommand Search => new CDelegateCommand((object _obj) =>
         {
             char[] ch_split = { ',' };
-            string[] arr_search_keyword = SearchKeyword.Split(ch_split);
+            string[] arr_search_keyword = TB_SearchKeyword.Split(ch_split);
 
 
             var list_the_word = (from element in LV_ListTheWordDto

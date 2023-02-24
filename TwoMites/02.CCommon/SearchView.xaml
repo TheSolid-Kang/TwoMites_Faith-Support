@@ -8,20 +8,20 @@
              mc:Ignorable="d"              
              Loaded="Load" Unloaded="UnLoad">
     <Grid Width="auto">
-        <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
+        <StackPanel Orientation="Horizontal" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Left">
             <DatePicker Name="FromDate" Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="2" 
                   Margin="10,0,10,0" Background="White"
-                  SelectedDate="{Binding SearchFromDate}" />
+                  SelectedDate="{Binding DP_SearchFromDate}" />
             <DatePicker Name="ToDate" Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="2" 
                   Margin="10,0,10,0" Background="White"
-                  SelectedDate="{Binding SearchFromDate}" />
+                  SelectedDate="{Binding DP_SearchFromDate}" />
             <CheckBox Name="CB_AllDateSearch" Content="All" 
                 Margin="10,0,10,0"  
-                IsChecked="{Binding IsSearchAll}"/>
+                IsChecked="{Binding CB_IsSearchAll}"/>
 
             <TextBox Name="TB_SearchKeyword" Width="300"
                Margin="10,0,10,0"
-               Text="{Binding SearchKeyword, Mode=TwoWay}"/>
+               Text="{Binding TB_SearchKeyword, Mode=TwoWay}"/>
             <Button Name="Btn_Search" Width="100" Content="검색"
                   Margin="10,0,10,0"
                   Command="{Binding Search}" />

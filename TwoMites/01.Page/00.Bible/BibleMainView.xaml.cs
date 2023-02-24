@@ -24,12 +24,13 @@ namespace TwoMites._01.Page._00.Bible
         public BibleMainView()
         {
             InitializeComponent();
-            m_view_model = new BibleMainViewModel();
-            this.DataContext = m_view_model;
-            m_side_commander.DataContext = m_view_model;
+            _viewModel = new BibleMainViewModel();
+            this.DataContext = _viewModel;
+            _sideCommander.DataContext = _viewModel;
+            CCommon_SearchView.SetDataContext(_viewModel);
         }
-        private BibleMainViewModel m_view_model { get; set; }
-        private CSideCommander m_side_commander = new CSideCommander();
+        private BibleMainViewModel _viewModel { get; set; }
+        private CSideCommander _sideCommander = new CSideCommander();
 
         public void Load(object _obj, RoutedEventArgs _routed_event_args)
         {
@@ -37,10 +38,10 @@ namespace TwoMites._01.Page._00.Bible
 
         public void UnLoad(object _obj, RoutedEventArgs _routed_event_args)
         {
-            m_view_model?.Dispose();
-            m_side_commander?.Dispose();
-            m_view_model = null;
-            m_side_commander = null;
+            _viewModel?.Dispose();
+            _sideCommander?.Dispose();
+            _viewModel = null;
+            _sideCommander = null;
         }
         public void Dispose()
         {

@@ -22,6 +22,7 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
         #region 멤버함수 선언부
         public ObservableCollection<BibleTitleDto> SelectBibleTitle() => _SelectBibleTitle();
         public ObservableCollection<BibleDto> SelectBible(string _bt_name_key) => _SelectBible(_bt_name_key);
+        public ObservableCollection<BibleDto> SelectSearchedBible(List<string> _listSearchKeyword, bool _isAnd = true) => _SelectSearchedBible(_listSearchKeyword, _isAnd);
         public ObservableCollection<BibleSummaryDto> SelectBibleSummary(string _b_book, string _b_chapter, string _b_verse) => _SelectBibleSummary(_b_book, _b_chapter, _b_verse);
         public ObservableCollection<BibleContemplationDto> SelectBibleContemplation(string _b_book, string _b_chapter, string _b_verse) => _SelectBibleContemplation(_b_book, _b_chapter, _b_verse);
         public bool InsertBibleSummary(string _b_book, string _b_chapter, string _b_verse, string _bibleSummary) => _InsertBibleSummary(_b_book, _b_chapter, _b_verse, _bibleSummary);
@@ -64,6 +65,47 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
                 }
             }
             return obsBible;
+        }
+        private ObservableCollection<BibleDto> _SelectSearchedBible(List<string> _listSearchKeyword, bool _isAnd = true)
+        {
+            List<BibleDto> listBible = null;
+
+            var iterable = from _searchKey in _listSearchKeyword select _searchKey;
+            var searchKeywords = _listSearchKeyword.Aggregate((_result, _searchKeyowrd) => _result += ("|" + _searchKeyowrd));
+
+            using (dao = new Engine._01.DAO.MySQL_DAO_v3())
+            {
+                using (var dataTable = dao.GetDataTable($"SELECT * FROM twomites.BIBLE WHERE b_descript REGEXP '{searchKeywords}';"))
+                {
+                    if (dataTable == null)
+                        return null;
+
+                    listBible = new List<BibleDto>(dataTable.Rows.Count);
+                    for (int i = 0; i < dataTable.Rows.Count; ++i)
+                    {
+                        listBible.Add(new BibleDto(dataTable.Rows[i]["b_book"].ToString()
+                          , dataTable.Rows[i]["b_chapter"].ToString()
+                          , dataTable.Rows[i]["b_verse"].ToString()
+                          , dataTable.Rows[i]["b_descript"].ToString()
+                          , dataTable.Rows[i]["b_full_descript"].ToString()));
+                    }
+                }
+            }
+            if (true == _isAnd)//and 조건
+            {
+                foreach (var _searchKeyword in _listSearchKeyword)
+                {
+                    var _listBible = (from _bibleDto in listBible
+                              where _bibleDto.b_descript.Contains(_searchKeyword)
+                              select _bibleDto).ToList();
+                    listBible = _listBible;
+                }
+                return new ObservableCollection<BibleDto>(listBible);
+            }
+            else//or 조건
+            {
+                return new ObservableCollection<BibleDto>(listBible);
+            }
         }
         private ObservableCollection<BibleSummaryDto> _SelectBibleSummary(string _b_book, string _b_chapter, string _b_verse)
         {
