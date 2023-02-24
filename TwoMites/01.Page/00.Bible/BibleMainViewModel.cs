@@ -23,7 +23,8 @@ namespace TwoMites._01.Page._00.Bible
         {
             LV_ListBibleDto = new ObservableCollection<BibleDto>();
             LV_ListTestamentName = new ObservableCollection<BibleTitleDto>();
-            LV_FocusBibleItem = new BibleDto("창", "1", "1");
+            //LV_FocusBibleItem = new BibleDto("창", "1", "1");
+            LV_FocusBibleItem = new BibleDto();
             LV_ListBibleDto = new ObservableCollection<BibleDto>();
             LV_ListBibleSummary = new ObservableCollection<BibleSummaryDto>();
             LV_ListBibleContemplation = new ObservableCollection<BibleContemplationDto>();

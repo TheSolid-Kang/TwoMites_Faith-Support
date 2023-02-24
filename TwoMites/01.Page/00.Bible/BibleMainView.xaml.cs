@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TwoMites._02.CCommon;
+using TwoMites_Engine._02.DTO._01.BibleDTO;
 
 namespace TwoMites._01.Page._00.Bible
 {
@@ -46,6 +47,43 @@ namespace TwoMites._01.Page._00.Bible
         public void Dispose()
         {
             GC.SuppressFinalize(true);
+        }
+
+        private void DG_ListSummary_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && Keyboard.Modifiers != ModifierKeys.Shift)
+            {
+                e.Handled = true;
+                var dto = DG_ListSummary.SelectedItem as BibleSummaryDto;
+                if (true == dto.bs_book.Equals(""))
+                {
+                    _viewModel.InsertBibleSummary.Execute(null);
+                }
+            }
+        }
+
+        private void DG_ListContemplation_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && Keyboard.Modifiers != ModifierKeys.Shift)
+            {
+                e.Handled = true;
+                _viewModel.InsertBibleContemplation.Execute(null);
+            }
+        }
+
+        private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void BtnUpdateSummary_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void BtnDeleteSummary_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var temp = DG_ListSummary.SelectedItem;
         }
     }
 }
