@@ -9,21 +9,21 @@ using TwoMites_Engine._02.DTO._02.TheWord;
 
 namespace TwoMites_Engine._03.Mgr
 {
-  public class CTheWordMgr : GENERIC_MGR<CTheWordMgr>, IDisposable
-  {
-    //private CBibleMgr() { }
-    public CTheWordMgr()
+    public class CTheWordMgr : GENERIC_MGR<CTheWordMgr>, IDisposable
     {
+        //private CBibleMgr() { }
+        public CTheWordMgr()
+        {
 
+        }
+        ~CTheWordMgr()
+        {
+
+        }
+
+        public void Dispose()
+        {
+
+        }
     }
-    ~CTheWordMgr()
-    {
-
-    }
-
-    public void Dispose()
-    {
-
-    }
-  }
 }

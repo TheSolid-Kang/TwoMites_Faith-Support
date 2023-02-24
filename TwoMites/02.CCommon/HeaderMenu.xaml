@@ -11,16 +11,16 @@
 
 
 
-  <Grid Background="SkyBlue"  >
-    <Grid.ColumnDefinitions >
-      
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions >
-      
-    </Grid.RowDefinitions>
-    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Width="auto" Height="auto" >
-      <Button Content="성경" Width="auto" Command="{Binding bind_bible}" ></Button>
-      <Button Content="말씀" Width="auto"></Button>
-    </StackPanel>
-  </Grid>
+    <Grid Background="SkyBlue"  >
+        <Grid.ColumnDefinitions >
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions >
+
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Width="auto" Height="auto" >
+            <Button Content="성경" Width="auto" Command="{Binding bind_bible}" ></Button>
+            <Button Content="말씀" Width="auto"></Button>
+        </StackPanel>
+    </Grid>
 </UserControl>

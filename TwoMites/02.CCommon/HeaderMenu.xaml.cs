@@ -16,26 +16,26 @@ using TwoMites._01.Page;
 
 namespace TwoMites._02.CCommon
 {
-  /// <summary>
-  /// HeaderMenu.xaml에 대한 상호 작용 논리
-  /// </summary>
-  public partial class HeaderMenu : UserControl, IViewBase
-  {
-    public HeaderMenu()
+    /// <summary>
+    /// HeaderMenu.xaml에 대한 상호 작용 논리
+    /// </summary>
+    public partial class HeaderMenu : UserControl, IViewBase
     {
-      InitializeComponent();
-    }
+        public HeaderMenu()
+        {
+            InitializeComponent();
+        }
 
-    public void Dispose()
-    {
-    }
+        public void Dispose()
+        {
+        }
 
-    public void Load(object _obj, RoutedEventArgs _routed_event_args)
-    {
-    }
+        public void Load(object _obj, RoutedEventArgs _routed_event_args)
+        {
+        }
 
-    public void UnLoad(object _obj, RoutedEventArgs _routed_event_args)
-    {
+        public void UnLoad(object _obj, RoutedEventArgs _routed_event_args)
+        {
+        }
     }
-  }
 }

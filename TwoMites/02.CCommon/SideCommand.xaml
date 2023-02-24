@@ -9,24 +9,24 @@
                           Loaded="Load" Unloaded="UnLoad"
              >
 
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="*" />
-    </Grid.RowDefinitions>
-    <Border Grid.Row="1" >
-      <ListBox ItemsSource="{Binding ListCommander}" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <ListBox.ItemTemplate>
-          <DataTemplate >
-            <Button Command="{Binding Command}"  IsEnabled="{Binding Enable}"  >
-              <StackPanel Orientation="Horizontal">
-                <Image Source="{Binding ImgPath}"/>
-                <TextBlock Text="{Binding Name}"/>
-              </StackPanel>
-            </Button>
-          </DataTemplate>
-        </ListBox.ItemTemplate>
-      </ListBox>
-    </Border>
-  </Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="1" >
+            <ListBox ItemsSource="{Binding ListCommander}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ListBox.ItemTemplate>
+                    <DataTemplate >
+                        <Button Command="{Binding Command}"  IsEnabled="{Binding Enable}"  >
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding ImgPath}"/>
+                                <TextBlock Text="{Binding Name}"/>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+    </Grid>
 </UserControl>

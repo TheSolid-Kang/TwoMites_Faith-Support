@@ -16,34 +16,34 @@ using TwoMites._01.Page;
 
 namespace TwoMites._02.CCommon
 {
-  /// <summary>
-  /// CSideCommander.xaml에 대한 상호 작용 논리
-  /// </summary>
-  public partial class CSideCommander : UserControl, IViewBase
-  {
-    public CSideCommander()
+    /// <summary>
+    /// CSideCommander.xaml에 대한 상호 작용 논리
+    /// </summary>
+    public partial class CSideCommander : UserControl, IViewBase
     {
-      InitializeComponent();
+        public CSideCommander()
+        {
+            InitializeComponent();
+        }
+        ~CSideCommander()
+        {
+            Dispose();
+        }
+
+        public void Load(object _obj, RoutedEventArgs _routed_event_args)
+        {
+
+        }
+        public void UnLoad(object _obj, RoutedEventArgs _routed_event_args)
+        {
+
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(true);
+        }
+
+
     }
-    ~CSideCommander()
-    {
-      Dispose();
-    }
-
-    public void Load(object _obj, RoutedEventArgs _routed_event_args)
-    {
-
-    }
-    public void UnLoad(object _obj, RoutedEventArgs _routed_event_args)
-    {
-
-    }
-
-    public void Dispose()
-    {
-      GC.SuppressFinalize(true);
-    }
-
-
-  }
 }

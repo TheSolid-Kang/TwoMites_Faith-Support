@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TwoMites_Engine._04.Query
 {
-  public class FellowshipQuery
-  {
-    public FellowshipQuery() { }
-    ~FellowshipQuery() { }
-
-    
+    public class FellowshipQuery
+    {
+        public FellowshipQuery() { }
+        ~FellowshipQuery() { }
 
 
-  }
+
+
+    }
 }

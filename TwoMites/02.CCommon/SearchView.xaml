@@ -7,24 +7,24 @@
              xmlns:common="clr-namespace:TwoMites._02.CCommon"
              mc:Ignorable="d"              
              Loaded="Load" Unloaded="UnLoad">
-  <Grid Width="auto">
-    <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
-      <DatePicker Name="FromDate" Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="2" 
+    <Grid Width="auto">
+        <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
+            <DatePicker Name="FromDate" Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="2" 
                   Margin="10,0,10,0" Background="White"
                   SelectedDate="{Binding SearchFromDate}" />
-      <DatePicker Name="ToDate" Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="2" 
+            <DatePicker Name="ToDate" Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="2" 
                   Margin="10,0,10,0" Background="White"
                   SelectedDate="{Binding SearchFromDate}" />
-      <CheckBox Name="CB_AllDateSearch" Content="All" 
+            <CheckBox Name="CB_AllDateSearch" Content="All" 
                 Margin="10,0,10,0"  
                 IsChecked="{Binding IsSearchAll}"/>
 
-      <TextBox Name="TB_SearchKeyword" Width="300"
+            <TextBox Name="TB_SearchKeyword" Width="300"
                Margin="10,0,10,0"
                Text="{Binding SearchKeyword, Mode=TwoWay}"/>
-      <Button Name="Btn_Search" Width="100" Content="검색"
+            <Button Name="Btn_Search" Width="100" Content="검색"
                   Margin="10,0,10,0"
                   Command="{Binding Search}" />
-    </StackPanel>
-  </Grid>
+        </StackPanel>
+    </Grid>
 </UserControl>

@@ -7,23 +7,23 @@ using TwoMites_Engine._01.DAO;
 
 namespace TwoMites_Engine._03.Mgr
 {
-  public class CBibleMgr : GENERIC_MGR<CBibleMgr>, IDisposable
-  {
-    //private CBibleMgr() { }
-    public CBibleMgr()
+    public class CBibleMgr : GENERIC_MGR<CBibleMgr>, IDisposable
     {
+        //private CBibleMgr() { }
+        public CBibleMgr()
+        {
 
+        }
+        ~CBibleMgr()
+        {
+
+        }
+
+
+
+        public void Dispose()
+        {
+
+        }
     }
-    ~CBibleMgr()
-    {
-
-    }
-
-    
-
-    public void Dispose()
-    {
-
-    }
-  }
 }

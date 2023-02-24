@@ -9,174 +9,175 @@
              d:DesignHeight="750" d:DesignWidth="1200"
              Loaded="Load" Unloaded="UnLoad"
              >
-  <Grid Background="White">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*" />
-      <RowDefinition Height="*" />
-      <RowDefinition Height="*" />
-      <RowDefinition Height="*" />
-      <RowDefinition Height="*" />
-      <RowDefinition Height="*" />
-      <RowDefinition Height="*" />
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-    <Grid Background="White" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="7">
-    </Grid>
+        <Grid Background="White" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="7">
 
-    <Grid Background="#FFDCDCE0" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4">
-      <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" HorizontalAlignment="Center" Width="Auto" 
+        </Grid>
+
+        <Grid Background="#FFDCDCE0" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4">
+            <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" HorizontalAlignment="Center" Width="Auto" 
                   ItemsSource="{Binding LV_ListTestamentName}"  
                   SelectedItem="{Binding LV_FocusTestamentItem, Mode=TwoWay}"
                       VerticalContentAlignment="Stretch" >
-        <ListView.View >
-          <GridView >
-            <GridViewColumn Header="성경" DisplayMemberBinding="{Binding bt_name, Mode=TwoWay}" Width="100" />
-          </GridView>
-        </ListView.View>
-        <ListView.ItemContainerStyle >
-          <Style TargetType="ListViewItem" />
-        </ListView.ItemContainerStyle>
-      </ListView>
-    </Grid>
-    <Grid Background="#FFDCDCE0" Grid.Row="5" Grid.Column="0" Grid.RowSpan="2">
-      <side_commander:CSideCommander />
-    </Grid>
-    <Grid Background="#FFE4E4C7" Grid.Row="1" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="*" />
-        <RowDefinition Height="*" />
-        <RowDefinition Height="*" />
-        <RowDefinition Height="*" />
-        <RowDefinition Height="*" />
-        <RowDefinition Height="*" />
-        <RowDefinition Height="*" />
-      </Grid.RowDefinitions>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="*" />
-      </Grid.ColumnDefinitions>
+                <ListView.View >
+                    <GridView >
+                        <GridViewColumn Header="성경" DisplayMemberBinding="{Binding bt_name, Mode=TwoWay}" Width="100" />
+                    </GridView>
+                </ListView.View>
+                <ListView.ItemContainerStyle >
+                    <Style TargetType="ListViewItem" />
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </Grid>
+        <Grid Background="#FFDCDCE0" Grid.Row="5" Grid.Column="0" Grid.RowSpan="2">
+            <side_commander:CSideCommander />
+        </Grid>
+        <Grid Background="#FFE4E4C7" Grid.Row="1" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-      <Grid Margin="10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+            <Grid Margin="10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-        <ListView Name="lv_bible" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" HorizontalAlignment="Center" Width="Auto" 
+                <ListView Name="lv_bible" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" HorizontalAlignment="Center" Width="Auto" 
                   ItemsSource="{Binding LV_ListBibleDto}" 
                   SelectedItem="{Binding LV_FocusBibleItem, Mode=TwoWay}" 
                       VerticalContentAlignment="Stretch" >
-          <ListView.View >
-            <GridView AllowsColumnReorder="True" >
-              <GridViewColumn Header="장" DisplayMemberBinding="{Binding b_chapter, Mode=TwoWay}" Width="auto"/>
-              <GridViewColumn Header="절" DisplayMemberBinding="{Binding b_verse, Mode=TwoWay}" Width="auto" />
-              <GridViewColumn Header="구절" DisplayMemberBinding="{Binding b_descript, Mode=TwoWay}" Width="410" />
-            </GridView>
-          </ListView.View>
-        </ListView>
+                    <ListView.View >
+                        <GridView AllowsColumnReorder="True" >
+                            <GridViewColumn Header="장" DisplayMemberBinding="{Binding b_chapter, Mode=TwoWay}" Width="auto"/>
+                            <GridViewColumn Header="절" DisplayMemberBinding="{Binding b_verse, Mode=TwoWay}" Width="auto" />
+                            <GridViewColumn Header="구절" DisplayMemberBinding="{Binding b_descript, Mode=TwoWay}" Width="410" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
 
-      </Grid>
-      <Grid Margin="10" Grid.Row="0" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="3">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+            </Grid>
+            <Grid Margin="10" Grid.Row="0" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-        <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7"  
+                <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7"  
                   Width="Auto"  ItemsSource="{Binding LV_ListBibleSummary}">
-          <ListView.View >
-            <GridView >
-              <GridViewColumn Header="date" DisplayMemberBinding="{Binding bs_date, Mode=TwoWay}" />
-              <GridViewColumn Header="summary" DisplayMemberBinding="{Binding bs_descript, Mode=TwoWay}" />
-            </GridView>
-          </ListView.View>
-          <ListView.ItemContainerStyle >
-            <Style TargetType="ListViewItem" />
-          </ListView.ItemContainerStyle>
-        </ListView>
-        <TextBox Grid.Row="5" Grid.Column="0"  Grid.RowSpan="2" Grid.ColumnSpan="6"   
+                    <ListView.View >
+                        <GridView >
+                            <GridViewColumn Header="date" DisplayMemberBinding="{Binding bs_date, Mode=TwoWay}" />
+                            <GridViewColumn Header="summary" DisplayMemberBinding="{Binding bs_descript, Mode=TwoWay}" />
+                        </GridView>
+                    </ListView.View>
+                    <ListView.ItemContainerStyle >
+                        <Style TargetType="ListViewItem" />
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                <TextBox Grid.Row="5" Grid.Column="0"  Grid.RowSpan="2" Grid.ColumnSpan="6"   
                  AcceptsReturn="True" Text="{Binding Path=TB_BibleSummary, Mode=TwoWay}" />
-        <Button Command="{Binding InsertBibleSummary}" Content="작성" Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" />
+                <Button Command="{Binding InsertBibleSummary}" Content="작성" Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" />
 
-      </Grid>
-      
-      <Grid Margin="10" Grid.Row="4" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="3">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7"   ItemsSource="{Binding LV_ListBibleContemplation}">
-          <ListView.View >
-            <GridView >
-              <GridViewColumn Header="date" DisplayMemberBinding="{Binding bc_date, Mode=TwoWay}" />
-              <GridViewColumn Header="contemplation" DisplayMemberBinding="{Binding bc_descript, Mode=TwoWay}" />
-            </GridView>
-          </ListView.View>
-          <ListView.ItemContainerStyle >
-            <Style TargetType="ListViewItem" />
-          </ListView.ItemContainerStyle>
-        </ListView>
-        <TextBox Grid.Row="5" Grid.Column="0"  Grid.RowSpan="2" Grid.ColumnSpan="6"   
+            </Grid>
+
+            <Grid Margin="10" Grid.Row="4" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ListView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7"   ItemsSource="{Binding LV_ListBibleContemplation}">
+                    <ListView.View >
+                        <GridView >
+                            <GridViewColumn Header="date" DisplayMemberBinding="{Binding bc_date, Mode=TwoWay}" />
+                            <GridViewColumn Header="contemplation" DisplayMemberBinding="{Binding bc_descript, Mode=TwoWay}" />
+                        </GridView>
+                    </ListView.View>
+                    <ListView.ItemContainerStyle >
+                        <Style TargetType="ListViewItem" />
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                <TextBox Grid.Row="5" Grid.Column="0"  Grid.RowSpan="2" Grid.ColumnSpan="6"   
                  AcceptsReturn="True" Text="{Binding Path=TB_BibleContemplation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-        <Button Command="{Binding InsertBibleContemplation}" Content="작성" Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" />
-      </Grid>
+                <Button Command="{Binding InsertBibleContemplation}" Content="작성" Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" />
+            </Grid>
+        </Grid>
     </Grid>
-  </Grid>
 </UserControl>

@@ -16,31 +16,31 @@ using TwoMites._01.Page;
 
 namespace TwoMites._02.CCommon
 {
-  /// <summary>
-  /// TreeViewCommand.xaml에 대한 상호 작용 논리
-  /// </summary>
-  public partial class TreeViewCommand : UserControl, IViewBase
-  {
-    public TreeViewCommand()
+    /// <summary>
+    /// TreeViewCommand.xaml에 대한 상호 작용 논리
+    /// </summary>
+    public partial class TreeViewCommand : UserControl, IViewBase
     {
-      InitializeComponent();
-    }
-    ~TreeViewCommand() 
-    {
-      Dispose();
-    }
-    public void Load(object _obj, RoutedEventArgs _routed_event_args)
-    {
-    }
-    public void UnLoad(object _obj, RoutedEventArgs _routed_event_args)
-    {
+        public TreeViewCommand()
+        {
+            InitializeComponent();
+        }
+        ~TreeViewCommand()
+        {
+            Dispose();
+        }
+        public void Load(object _obj, RoutedEventArgs _routed_event_args)
+        {
+        }
+        public void UnLoad(object _obj, RoutedEventArgs _routed_event_args)
+        {
+
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(true);
+        }
 
     }
-
-    public void Dispose()
-    {
-      GC.SuppressFinalize(true);
-    }
-
-  }
 }

@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace TwoMites._01.Page._02.Pray
 {
-  /// <summary>
-  /// PrayMainView.xaml에 대한 상호 작용 논리
-  /// </summary>
-  public partial class PrayMainView : UserControl
-  {
-    public PrayMainView()
+    /// <summary>
+    /// PrayMainView.xaml에 대한 상호 작용 논리
+    /// </summary>
+    public partial class PrayMainView : UserControl
     {
-      InitializeComponent();
+        public PrayMainView()
+        {
+            InitializeComponent();
+        }
     }
-  }
 }

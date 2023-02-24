@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TwoMites_Engine._02.DTO._03.Fellowship
 {
-  public class FellowshipDto
-  {
-    public int f_pk_id;
-    public int f_fd_id;
+    public class FellowshipDto
+    {
+        public int f_pk_id;
+        public int f_fd_id;
 
-    public DateTime f_created_at = DateTime.Now;
+        public DateTime f_created_at = DateTime.Now;
 
-    public string f_descript = "";
-  }
+        public string f_descript = "";
+    }
 }
