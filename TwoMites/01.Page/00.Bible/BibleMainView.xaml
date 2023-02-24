@@ -139,7 +139,7 @@
         </ListView>
         <TextBox Grid.Row="5" Grid.Column="0"  Grid.RowSpan="2" Grid.ColumnSpan="6"   
                  AcceptsReturn="True" Text="{Binding Path=TB_BibleSummary, Mode=TwoWay}" />
-        <Button Command="{Binding InserBibleSummary}" Content="작성" Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" />
+        <Button Command="{Binding InsertBibleSummary}" Content="작성" Grid.Row="5" Grid.Column="7" Grid.RowSpan="2" />
 
       </Grid>
       

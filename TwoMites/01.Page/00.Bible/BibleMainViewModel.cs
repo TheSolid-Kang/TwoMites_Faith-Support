@@ -162,7 +162,7 @@ namespace TwoMites._01.Page._00.Bible
 
 
     //성경 줄거리 입력
-    public ICommand InserBibleSummary => new CDelegateCommand((object _obj) => 
+    public ICommand InsertBibleSummary => new CDelegateCommand((object _obj) => 
     { 
       LV_ListBibleSummary = new ObservableCollection<BibleSummaryDto>();
       using (CBible_DAO dao = new CBible_DAO())
@@ -171,6 +171,7 @@ namespace TwoMites._01.Page._00.Bible
       }
       TB_BibleSummary = "";
       NotifyPropertyChanged(nameof(TB_BibleSummary));
+      UpdateListBibleSummaryDto?.Execute(null);
     });
     //성경 묵상 입력
     public ICommand InsertBibleContemplation => new CDelegateCommand((object _obj) => 
@@ -182,6 +183,7 @@ namespace TwoMites._01.Page._00.Bible
       }
       TB_BibleContemplation = "";
       NotifyPropertyChanged(nameof(TB_BibleContemplation));
+      UpdateListBibleContemplationDto?.Execute(null);
     });
     
     //220618_tk_ 사이드 메뉴 
