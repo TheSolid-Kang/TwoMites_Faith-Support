@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,39 +52,101 @@ namespace TwoMites._01.Page._00.Bible
 
         private void DG_ListSummary_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter && Keyboard.Modifiers != ModifierKeys.Shift)
+/*            if (e.Key == Key.Enter && Keyboard.Modifiers != ModifierKeys.Shift)
             {
                 e.Handled = true;
-                var dto = DG_ListSummary.SelectedItem as BibleSummaryDto;
-                if (true == dto.bs_book.Equals(""))
-                {
-                    _viewModel.InsertBibleSummary.Execute(null);
-                }
+                _viewModel.InsertBibleSummary.Execute(null);
             }
+*/            var textBox = e.OriginalSource as System.Windows.Controls.TextBox;
+            var content = textBox?.Text.ToString();
+            _viewModel.TB_BibleSummary = content;
         }
 
         private void DG_ListContemplation_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter && Keyboard.Modifiers != ModifierKeys.Shift)
+/*            if (e.Key == Key.Enter && Keyboard.Modifiers != ModifierKeys.Shift)
             {
                 e.Handled = true;
                 _viewModel.InsertBibleContemplation.Execute(null);
             }
+*/          
+            var textBox = e.OriginalSource as System.Windows.Controls.TextBox;
+            var content = textBox?.Text.ToString();
+            _viewModel.TB_BibleContemplation = content;
         }
 
-        private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void TB_AddSummary(object sender, MouseButtonEventArgs e)
         {
-
+            var obsSummaryDto = DG_ListSummary.ItemsSource as ObservableCollection<BibleSummaryDto>;
+            var focusBible = _viewModel.LV_FocusBibleItem;
+            obsSummaryDto.Add(new BibleSummaryDto(focusBible.b_pk_id, focusBible.b_book, focusBible.b_chapter, focusBible.b_verse));
+            DG_ListSummary.ItemsSource = obsSummaryDto;
         }
 
-        private void BtnUpdateSummary_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void TB_UpdateSummary_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            var summaryDto = DG_ListSummary.SelectedItem as BibleSummaryDto;
+            if (0 == summaryDto?.bs_pk_id)
+            {
+                _viewModel.InsertBibleSummary.Execute(null);
+            }
+            else
+            {
+                _viewModel.UpdateBibleSummary.Execute(null);
+            }
         }
 
-        private void BtnDeleteSummary_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void TB_DeleteSummary_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var temp = DG_ListSummary.SelectedItem;
+            var summaryDto = DG_ListSummary.SelectedItem as BibleSummaryDto;
+            if (0 == summaryDto?.bs_pk_id)
+            {
+                var obsSummaryDto = DG_ListSummary.ItemsSource as ObservableCollection<BibleSummaryDto>;
+                obsSummaryDto.Remove(summaryDto);
+                DG_ListSummary.ItemsSource = obsSummaryDto;
+            }
+            else
+            {
+                _viewModel.DeleteBibleContemplation.Execute(summaryDto?.bs_pk_id);
+            }
+        }
+
+
+
+        private void TB_AddContemplation(object sender, MouseButtonEventArgs e)
+        {
+            var obsContemplationDto = DG_ListContemplation.ItemsSource as ObservableCollection<BibleContemplationDto>;
+            var focusBible = _viewModel.LV_FocusBibleItem;
+            obsContemplationDto.Add(new BibleContemplationDto(focusBible.b_pk_id, focusBible.b_book, focusBible.b_chapter, focusBible.b_verse));
+            DG_ListContemplation.ItemsSource = obsContemplationDto;
+        }
+
+        private void TB_UpdateContemplation_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var contemplationDto = DG_ListContemplation.SelectedItem as BibleContemplationDto;
+            if (0 == contemplationDto?.bc_pk_id)
+            {
+                _viewModel.InsertBibleContemplation.Execute(null);
+            }
+            else
+            {
+                _viewModel.UpdateBibleContemplation.Execute(null);
+            }
+        }
+
+        private void TB_DeleteContemplation_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var contemplationDto = DG_ListContemplation.SelectedItem as BibleContemplationDto;
+            if (0 == contemplationDto?.bc_pk_id)
+            {
+                var obsContemplationDto = DG_ListContemplation.ItemsSource as ObservableCollection<BibleContemplationDto>;
+                obsContemplationDto.Remove(contemplationDto);
+                DG_ListContemplation.ItemsSource = obsContemplationDto;
+            }
+            else
+            {
+                _viewModel.DeleteBibleContemplation.Execute(contemplationDto?.bc_pk_id);
+            }
         }
     }
 }

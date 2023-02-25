@@ -8,8 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="1200"
              Loaded="Load" Unloaded="UnLoad"
-             xmlns:ccommon="clr-namespace:TwoMites._02.CCommon"
-             >
+             xmlns:ccommon="clr-namespace:TwoMites._02.CCommon" >
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -106,7 +105,7 @@
                 <Border Grid.Column="0" Background="#FFf5f5f5" Margin="10,10,10,0" CornerRadius="2"  Panel.ZIndex="5">
                     <DataGrid x:Name="DG_ListSummary" Margin="8" BorderBrush="#FFBBBBBB" Grid.Row="0" PreviewKeyDown="DG_ListSummary_PreviewKeyDown"
               ItemsSource="{Binding LV_ListBibleSummary, Mode=TwoWay}" ColumnHeaderStyle="{DynamicResource StatusHeaderStyle}" AutoGenerateColumns="False" 
-                             CanUserAddRows="False" IsReadOnly="True" >
+                             CanUserAddRows="False" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="업데이트 일자" Binding="{Binding bs_date, StringFormat=yyyy-MM-dd HH:mm:ss}" MinWidth="120" Width="auto"/>
                             <DataGridTextColumn Header="내용" Binding="{Binding bs_descript}" MinWidth="120" Width="*" >
@@ -129,7 +128,7 @@
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                                 <DataGridTextColumn.Header>
-                                    <TextBlock Text="추가"  PreviewMouseDown="TextBlock_PreviewMouseDown"/>
+                                    <TextBlock Text="추가"  MouseDown="TB_AddSummary"/>
                                 </DataGridTextColumn.Header>
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
@@ -143,10 +142,10 @@
                                                                 <ColumnDefinition Width="auto"/>
                                                             </Grid.ColumnDefinitions>
                                                             <Border BorderThickness="1" BorderBrush="Black" Grid.Column="0" Background="SkyBlue"  Margin="1" >
-                                                                <TextBlock x:Name="BtnUpdateSummary" Text="수정" MouseDown="BtnUpdateSummary_PreviewMouseDown"/>
+                                                                <TextBlock x:Name="TB_UpdateSummary" Text="수정" MouseDown="TB_UpdateSummary_MouseDown"/>
                                                             </Border>
                                                             <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Background="SkyBlue" Margin="1" >
-                                                                <TextBlock x:Name="BtnDeleteSummary" Text="삭제"  Margin="1" MouseDown="BtnDeleteSummary_PreviewMouseDown"/>
+                                                                <TextBlock x:Name="TB_DeleteSummary" Text="삭제"  Margin="1" MouseDown="TB_DeleteSummary_MouseDown"/>
                                                             </Border>
                                                         </Grid>
                                                     </Border>
@@ -177,6 +176,40 @@
                                         <Setter Property="AcceptsReturn" Value="true" />
                                     </Style>
                                 </DataGridTextColumn.EditingElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Width="auto" Visibility="Visible" >
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="추가"  MouseDown="TB_AddContemplation"/>
+                                </DataGridTextColumn.Header>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                    <Border CornerRadius="2" Margin="1" BorderThickness="1.75" >
+                                                        <Grid Margin="4">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="auto"/>
+                                                                <ColumnDefinition Width="auto"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Border BorderThickness="1" BorderBrush="Black" Grid.Column="0" Background="SkyBlue"  Margin="1" >
+                                                                <TextBlock x:Name="TB_UpdateContemplation" Text="수정" MouseDown="TB_UpdateContemplation_MouseDown"/>
+                                                            </Border>
+                                                            <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Background="SkyBlue" Margin="1" >
+                                                                <TextBlock x:Name="TB_DeleteContemplation" Text="삭제"  Margin="1" MouseDown="TB_DeleteContemplation_MouseDown"/>
+                                                            </Border>
+                                                        </Grid>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>

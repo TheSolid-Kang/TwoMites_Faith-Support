@@ -167,25 +167,70 @@ namespace TwoMites._01.Page._00.Bible
         //성경 줄거리 입력
         public ICommand InsertBibleSummary => new CDelegateCommand((object _obj) =>
         {
-            LV_ListBibleSummary = new ObservableCollection<BibleSummaryDto>();
+            LV_ListBibleSummary?.Clear();
             using (CBible_DAO dao = new CBible_DAO())
             {
-                dao.InsertBibleSummary(LV_FocusBibleItem.b_book, LV_FocusBibleItem.b_chapter, LV_FocusBibleItem.b_verse, TB_BibleSummary);
+                dao.InsertBibleSummary(LV_FocusBibleItem.b_pk_id, LV_FocusBibleItem.b_book, LV_FocusBibleItem.b_chapter, LV_FocusBibleItem.b_verse, TB_BibleSummary);
             }
             TB_BibleSummary = "";
             NotifyPropertyChanged(nameof(TB_BibleSummary));
             UpdateListBibleSummaryDto?.Execute(null);
         });
+        public ICommand UpdateBibleSummary => new CDelegateCommand((object _obj) =>
+        {
+            LV_ListBibleSummary?.Clear();
+            using (CBible_DAO dao = new CBible_DAO())
+            {
+                dao.UpdateBibleSummary(LV_FocusBibleItem.b_pk_id, TB_BibleSummary);
+            }
+            TB_BibleSummary = "";
+            NotifyPropertyChanged(nameof(TB_BibleSummary));
+            UpdateListBibleSummaryDto?.Execute(null);
+        });
+        public ICommand DeleteBibleSummary => new CDelegateCommand((object _ob) =>
+        {
+            int bs_pk_id = (int)_ob;
+            LV_ListBibleSummary?.Clear();
+            using (CBible_DAO dao = new CBible_DAO())
+            {
+                dao.DeleteBibleSummary(bs_pk_id);
+            }
+            TB_BibleSummary = "";
+            NotifyPropertyChanged(nameof(TB_BibleSummary));
+            UpdateListBibleSummaryDto?.Execute(null);
+        });
+
         //성경 묵상 입력
         public ICommand InsertBibleContemplation => new CDelegateCommand((object _obj) =>
         {
-            LV_ListBibleContemplation = new ObservableCollection<BibleContemplationDto>();
+            LV_ListBibleContemplation?.Clear();
             using (CBible_DAO dao = new CBible_DAO())
             {
-                dao.InsertBibleContemplation(LV_FocusBibleItem.b_book, LV_FocusBibleItem.b_chapter, LV_FocusBibleItem.b_verse, TB_BibleContemplation);
+                dao.InsertBibleContemplation(LV_FocusBibleItem.b_pk_id, LV_FocusBibleItem.b_book, LV_FocusBibleItem.b_chapter, LV_FocusBibleItem.b_verse, TB_BibleContemplation);
             }
             TB_BibleContemplation = "";
             NotifyPropertyChanged(nameof(TB_BibleContemplation));
+            UpdateListBibleContemplationDto?.Execute(null);
+        });
+        public ICommand UpdateBibleContemplation => new CDelegateCommand((object _obj) => 
+        {
+            LV_ListBibleContemplation?.Clear();
+            using (CBible_DAO dao = new CBible_DAO())
+            {
+                dao.UpdateBibleContemplation(LV_FocusBibleItem.b_pk_id, TB_BibleContemplation);
+            }
+            TB_BibleContemplation = "";
+            UpdateListBibleContemplationDto?.Execute(null);
+        });
+        public ICommand DeleteBibleContemplation => new CDelegateCommand((object _ob) =>
+        {
+            int bc_pk_id = (int)_ob ;
+            LV_ListBibleContemplation?.Clear();
+            using (CBible_DAO dao = new CBible_DAO())
+            {
+                dao.DeleteBibleContemplation(bc_pk_id);
+            }
+            TB_BibleContemplation = "";
             UpdateListBibleContemplationDto?.Execute(null);
         });
 

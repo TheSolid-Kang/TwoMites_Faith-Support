@@ -26,7 +26,12 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
         public ObservableCollection<BibleSummaryDto> SelectBibleSummary(string _b_book, string _b_chapter, string _b_verse) => _SelectBibleSummary(_b_book, _b_chapter, _b_verse);
         public ObservableCollection<BibleContemplationDto> SelectBibleContemplation(string _b_book, string _b_chapter, string _b_verse) => _SelectBibleContemplation(_b_book, _b_chapter, _b_verse);
         public bool InsertBibleSummary(int _b_pk_id, string _b_book, string _b_chapter, string _b_verse, string _bibleSummary) => _InsertBibleSummary(_b_pk_id, _b_book, _b_chapter, _b_verse, _bibleSummary);
+        public bool UpdateBibleSummary(int _b_pk_id, string _description) => _UpdateBibleSummary(_b_pk_id, _description);
+        public bool DeleteBibleSummary(int _bs_pk_id) => _DeleteBibleSummary(_bs_pk_id);
+
         public bool InsertBibleContemplation(int _b_pk_id, string _b_book, string _b_chapter, string _b_verse, string _bibleContemplation) => _InsertBibleContemplation(_b_pk_id, _b_book, _b_chapter, _b_verse, _bibleContemplation);
+        public bool UpdateBibleContemplation(int _b_pk_id, string _description) => _UpdateBibleContemplation(_b_pk_id,_description);
+        public bool DeleteBibleContemplation(int _bc_pk_id) => _DeleteBibleContemplation(_bc_pk_id);
         #endregion
 
         #region 멤버함수 정의부
@@ -160,11 +165,43 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
             }
             return true;
         }
+        private bool _UpdateBibleSummary(int _b_pk_id, string _description)
+        {
+            using(var dao = new Engine._01.DAO.MySQL_DAO_v3())
+            {
+                dao.Execute($"UPDATE BIBLE_SUMMARY SET bs_descript = '{_description}' WHERE b_fk_id = {_b_pk_id}");
+            }
+            return true;
+        }
+        private bool _DeleteBibleSummary(int _bs_pk_id)
+        {
+            using (var dao = new Engine._01.DAO.MySQL_DAO_v3())
+            {
+                dao.Execute($"DELETE FROM BIBLE_SUMMARY WHERE bs_pk_id = {_bs_pk_id}");
+            }
+            return true;
+        }
         private bool _InsertBibleContemplation(int _b_pk_id, string _b_book, string _b_chapter, string _b_verse, string _bibleContemplation)
         {
             using (dao = new Engine._01.DAO.MySQL_DAO_v3())
             {
                 dao.Execute($"INSERT INTO twomites.BIBLE_CONTEMPLATION(b_fk_id, bc_date, bc_book, bc_chapter, bc_verse, bc_descript) VALUES('{_b_pk_id}', now(), '{_b_book}', '{_b_chapter}','{_b_verse}','{_bibleContemplation}')");
+            }
+            return true;
+        }
+        private bool _UpdateBibleContemplation(int _b_pk_id, string _description)
+        {
+            using (var dao = new Engine._01.DAO.MySQL_DAO_v3())
+            {
+                dao.Execute($"UPDATE BIBLE_CONTEMPLATION SET bc_descript = '{_description}' WHERE b_fk_id = {_b_pk_id}");
+            }
+            return true;
+        }
+        private bool _DeleteBibleContemplation(int _bc_pk_id)
+        {
+            using (var dao = new Engine._01.DAO.MySQL_DAO_v3())
+            {
+                dao.Execute($"DELETE FROM BIBLE_CONTEMPLATION WHERE bc_pk_id = {_bc_pk_id}");
             }
             return true;
         }
