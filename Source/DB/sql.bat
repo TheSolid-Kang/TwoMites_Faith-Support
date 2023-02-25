@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\MariaDB 10.4\bin\mysql" -u ‘root’ -p’root’ -P’3306’ < TwoMites.sql
