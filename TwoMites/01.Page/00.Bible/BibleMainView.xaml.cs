@@ -99,7 +99,12 @@ namespace TwoMites._01.Page._00.Bible
         private void TB_DeleteSummary_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var summaryDto = DG_ListSummary.SelectedItem as BibleSummaryDto;
-            if (0 == summaryDto?.bs_pk_id)
+            if (null == summaryDto)
+            {
+                return;
+            }
+
+            if (0 == summaryDto.bs_pk_id)
             {
                 var obsSummaryDto = DG_ListSummary.ItemsSource as ObservableCollection<BibleSummaryDto>;
                 obsSummaryDto.Remove(summaryDto);
@@ -107,7 +112,7 @@ namespace TwoMites._01.Page._00.Bible
             }
             else
             {
-                _viewModel.DeleteBibleContemplation.Execute(summaryDto?.bs_pk_id);
+                _viewModel.DeleteBibleSummary.Execute(summaryDto?.bs_pk_id);
             }
         }
 
@@ -137,7 +142,12 @@ namespace TwoMites._01.Page._00.Bible
         private void TB_DeleteContemplation_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var contemplationDto = DG_ListContemplation.SelectedItem as BibleContemplationDto;
-            if (0 == contemplationDto?.bc_pk_id)
+            if(null == contemplationDto)
+            {
+                return;
+            }
+
+            if (0 == contemplationDto.bc_pk_id)
             {
                 var obsContemplationDto = DG_ListContemplation.ItemsSource as ObservableCollection<BibleContemplationDto>;
                 obsContemplationDto.Remove(contemplationDto);
