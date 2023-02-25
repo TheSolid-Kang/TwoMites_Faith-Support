@@ -25,6 +25,7 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
         public ObservableCollection<BibleDto> SelectSearchedBible(List<string> _listSearchKeyword, bool _isAnd = true) => _SelectSearchedBible(_listSearchKeyword, _isAnd);
         public ObservableCollection<BibleSummaryDto> SelectBibleSummary(string _b_book, string _b_chapter, string _b_verse) => _SelectBibleSummary(_b_book, _b_chapter, _b_verse);
         public ObservableCollection<BibleContemplationDto> SelectBibleContemplation(string _b_book, string _b_chapter, string _b_verse) => _SelectBibleContemplation(_b_book, _b_chapter, _b_verse);
+
         public bool InsertBibleSummary(int _b_pk_id, string _b_book, string _b_chapter, string _b_verse, string _bibleSummary) => _InsertBibleSummary(_b_pk_id, _b_book, _b_chapter, _b_verse, _bibleSummary);
         public bool UpdateBibleSummary(int _b_pk_id, string _description) => _UpdateBibleSummary(_b_pk_id, _description);
         public bool DeleteBibleSummary(int _bs_pk_id) => _DeleteBibleSummary(_bs_pk_id);
