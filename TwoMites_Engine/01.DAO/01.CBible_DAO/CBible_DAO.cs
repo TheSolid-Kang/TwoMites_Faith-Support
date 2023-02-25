@@ -25,8 +25,8 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
         public ObservableCollection<BibleDto> SelectSearchedBible(List<string> _listSearchKeyword, bool _isAnd = true) => _SelectSearchedBible(_listSearchKeyword, _isAnd);
         public ObservableCollection<BibleSummaryDto> SelectBibleSummary(string _b_book, string _b_chapter, string _b_verse) => _SelectBibleSummary(_b_book, _b_chapter, _b_verse);
         public ObservableCollection<BibleContemplationDto> SelectBibleContemplation(string _b_book, string _b_chapter, string _b_verse) => _SelectBibleContemplation(_b_book, _b_chapter, _b_verse);
-        public bool InsertBibleSummary(string _b_book, string _b_chapter, string _b_verse, string _bibleSummary) => _InsertBibleSummary(_b_book, _b_chapter, _b_verse, _bibleSummary);
-        public bool InsertBibleContemplation(string _b_book, string _b_chapter, string _b_verse, string _bibleContemplation) => _InsertBibleContemplation(_b_book, _b_chapter, _b_verse, _bibleContemplation);
+        public bool InsertBibleSummary(int _b_pk_id, string _b_book, string _b_chapter, string _b_verse, string _bibleSummary) => _InsertBibleSummary(_b_pk_id, _b_book, _b_chapter, _b_verse, _bibleSummary);
+        public bool InsertBibleContemplation(int _b_pk_id, string _b_book, string _b_chapter, string _b_verse, string _bibleContemplation) => _InsertBibleContemplation(_b_pk_id, _b_book, _b_chapter, _b_verse, _bibleContemplation);
         #endregion
 
         #region 멤버함수 정의부
@@ -56,7 +56,8 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
                 {
                     for (int i = 0; i < dataTable.Rows.Count; ++i)
                     {
-                        obsBible.Add(new BibleDto(dataTable.Rows[i]["b_book"].ToString()
+                        obsBible.Add(new BibleDto(int.Parse(dataTable.Rows[i]["b_pk_id"].ToString())
+                          , dataTable.Rows[i]["b_book"].ToString()
                           , dataTable.Rows[i]["b_chapter"].ToString()
                           , dataTable.Rows[i]["b_verse"].ToString()
                           , dataTable.Rows[i]["b_descript"].ToString()
@@ -83,7 +84,8 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
                     listBible = new List<BibleDto>(dataTable.Rows.Count);
                     for (int i = 0; i < dataTable.Rows.Count; ++i)
                     {
-                        listBible.Add(new BibleDto(dataTable.Rows[i]["b_book"].ToString()
+                        listBible.Add(new BibleDto(int.Parse(dataTable.Rows[i]["b_pk_id"].ToString())
+                          , dataTable.Rows[i]["b_book"].ToString()
                           , dataTable.Rows[i]["b_chapter"].ToString()
                           , dataTable.Rows[i]["b_verse"].ToString()
                           , dataTable.Rows[i]["b_descript"].ToString()
@@ -96,8 +98,8 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
                 foreach (var _searchKeyword in _listSearchKeyword)
                 {
                     var _listBible = (from _bibleDto in listBible
-                              where _bibleDto.b_descript.Contains(_searchKeyword)
-                              select _bibleDto).ToList();
+                                      where _bibleDto.b_descript.Contains(_searchKeyword)
+                                      select _bibleDto).ToList();
                     listBible = _listBible;
                 }
                 return new ObservableCollection<BibleDto>(listBible);
@@ -116,7 +118,9 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
                 {
                     for (int i = 0; i < dataTable?.Rows.Count; ++i)
                     {
-                        obsBible.Add(new BibleSummaryDto(DateTime.Parse(dataTable?.Rows[i]["bs_date"].ToString())
+                        obsBible.Add(new BibleSummaryDto(int.Parse(dataTable?.Rows[i]["bs_pk_id"].ToString())
+                          , int.Parse(dataTable?.Rows[i]["b_fk_id"].ToString())
+                          , DateTime.Parse(dataTable?.Rows[i]["bs_date"].ToString())
                           , dataTable.Rows[i]["bs_book"].ToString()
                           , dataTable.Rows[i]["bs_chapter"].ToString()
                           , dataTable.Rows[i]["bs_verse"].ToString()
@@ -136,7 +140,9 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
                 {
                     for (int i = 0; i < dataTable?.Rows.Count; ++i)
                     {
-                        obsBible.Add(new BibleContemplationDto(DateTime.Parse(dataTable.Rows[i]["bc_date"].ToString())
+                        obsBible.Add(new BibleContemplationDto(int.Parse(dataTable?.Rows[i]["bc_pk_id"].ToString())
+                          , int.Parse(dataTable?.Rows[i]["b_fk_id"].ToString())
+                          , DateTime.Parse(dataTable.Rows[i]["bc_date"].ToString())
                           , dataTable.Rows[i]["bc_book"].ToString()
                           , dataTable.Rows[i]["bc_chapter"].ToString()
                           , dataTable.Rows[i]["bc_verse"].ToString()
@@ -146,19 +152,19 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
             }
             return obsBible;
         }
-        private bool _InsertBibleSummary(string _b_book, string _b_chapter, string _b_verse, string _bibleSummary)
+        private bool _InsertBibleSummary(int _b_pk_id, string _b_book, string _b_chapter, string _b_verse, string _bibleSummary)
         {
             using (dao = new Engine._01.DAO.MySQL_DAO_v3())
             {
-                dao.Execute($"INSERT INTO twomites.BIBLE_SUMMARY VALUES(now(), '{_b_book}', '{_b_chapter}','{_b_verse}','{_bibleSummary}')");
+                dao.Execute($"INSERT INTO twomites.BIBLE_SUMMARY(b_fk_id, bs_date, bs_book, bs_chapter, bs_verse, bs_descript) VALUES('{_b_pk_id}', now(), '{_b_book}', '{_b_chapter}','{_b_verse}','{_bibleSummary}')");
             }
             return true;
         }
-        private bool _InsertBibleContemplation(string _b_book, string _b_chapter, string _b_verse, string _bibleContemplation)
+        private bool _InsertBibleContemplation(int _b_pk_id, string _b_book, string _b_chapter, string _b_verse, string _bibleContemplation)
         {
             using (dao = new Engine._01.DAO.MySQL_DAO_v3())
             {
-                dao.Execute($"INSERT INTO twomites.BIBLE_CONTEMPLATION VALUES(now(), '{_b_book}', '{_b_chapter}','{_b_verse}','{_bibleContemplation}')");
+                dao.Execute($"INSERT INTO twomites.BIBLE_CONTEMPLATION(b_fk_id, bc_date, bc_book, bc_chapter, bc_verse, bc_descript) VALUES('{_b_pk_id}', now(), '{_b_book}', '{_b_chapter}','{_b_verse}','{_bibleContemplation}')");
             }
             return true;
         }
