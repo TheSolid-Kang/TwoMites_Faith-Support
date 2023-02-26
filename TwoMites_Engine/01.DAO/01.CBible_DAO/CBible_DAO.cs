@@ -13,7 +13,7 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
     public class CBible_DAO : Engine._01.DAO.MySQL_DAO_v3
     {
         public CBible_DAO() { }
-        ~CBible_DAO() { Dispose(); }
+        ~CBible_DAO() { }
 
         private Engine._01.DAO.MySQL_DAO_v3 dao;
         private const int DEFAULT_CAP = 1024;
@@ -27,11 +27,11 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
         public ObservableCollection<BibleContemplationDto> SelectBibleContemplation(string _b_book, string _b_chapter, string _b_verse) => _SelectBibleContemplation(_b_book, _b_chapter, _b_verse);
 
         public bool InsertBibleSummary(int _b_pk_id, string _b_book, string _b_chapter, string _b_verse, string _bibleSummary) => _InsertBibleSummary(_b_pk_id, _b_book, _b_chapter, _b_verse, _bibleSummary);
-        public bool UpdateBibleSummary(int _b_pk_id, string _description) => _UpdateBibleSummary(_b_pk_id, _description);
+        public bool UpdateBibleSummary(int _bs_pk_id, string _description) => _UpdateBibleSummary(_bs_pk_id, _description);
         public bool DeleteBibleSummary(int _bs_pk_id) => _DeleteBibleSummary(_bs_pk_id);
 
         public bool InsertBibleContemplation(int _b_pk_id, string _b_book, string _b_chapter, string _b_verse, string _bibleContemplation) => _InsertBibleContemplation(_b_pk_id, _b_book, _b_chapter, _b_verse, _bibleContemplation);
-        public bool UpdateBibleContemplation(int _b_pk_id, string _description) => _UpdateBibleContemplation(_b_pk_id,_description);
+        public bool UpdateBibleContemplation(int _bc_pk_id, string _description) => _UpdateBibleContemplation(_bc_pk_id, _description);
         public bool DeleteBibleContemplation(int _bc_pk_id) => _DeleteBibleContemplation(_bc_pk_id);
         #endregion
 
@@ -166,11 +166,11 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
             }
             return true;
         }
-        private bool _UpdateBibleSummary(int _b_pk_id, string _description)
+        private bool _UpdateBibleSummary(int _bs_pk_id, string _description)
         {
             using(var dao = new Engine._01.DAO.MySQL_DAO_v3())
             {
-                dao.Execute($"UPDATE BIBLE_SUMMARY SET bs_descript = '{_description}' WHERE b_fk_id = {_b_pk_id}");
+                dao.Execute($"UPDATE BIBLE_SUMMARY SET bs_descript = '{_description}' WHERE bs_pk_id = {_bs_pk_id}");
             }
             return true;
         }
@@ -190,11 +190,11 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
             }
             return true;
         }
-        private bool _UpdateBibleContemplation(int _b_pk_id, string _description)
+        private bool _UpdateBibleContemplation(int _bc_pk_id, string _description)
         {
             using (var dao = new Engine._01.DAO.MySQL_DAO_v3())
             {
-                dao.Execute($"UPDATE BIBLE_CONTEMPLATION SET bc_descript = '{_description}' WHERE b_fk_id = {_b_pk_id}");
+                dao.Execute($"UPDATE BIBLE_CONTEMPLATION SET bc_descript = '{_description}' WHERE bc_pk_id = {_bc_pk_id}");
             }
             return true;
         }
@@ -208,11 +208,5 @@ namespace TwoMites_Engine._01.DAO._01.CBible_DAO
         }
 
         #endregion
-
-        public void Dispose()
-        {
-            dao?.Dispose();
-            GC.SuppressFinalize(this);
-        }
     }
 }

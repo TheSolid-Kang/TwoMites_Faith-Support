@@ -105,63 +105,63 @@ namespace TwoMites._01.Page._00.Bible
 
         //권에 맞는 성경 출력
         public ICommand UpdateListBibleDto => new CDelegateCommand((object _obj) =>
-          {
-              LV_ListBibleDto?.Clear();
-              using (CBible_DAO dao = new CBible_DAO())
-              {
-                  LV_ListBibleDto = dao.SelectBible(LV_FocusTestamentItem.bt_name_key);
-                  Func<string, string> applyNewLine = (string _str_bible) =>
-                  {
-                      StringBuilder str_buil = new StringBuilder(512);
-                      const int DEFAULT_NEW_LINE_INDEX = 35;
-                      int i = 0;
-                      for (; (i + 1) * DEFAULT_NEW_LINE_INDEX < _str_bible.Length; ++i)
-                      {
-                          int cur_index = i * DEFAULT_NEW_LINE_INDEX;
-                          _str_bible = _str_bible.Insert((i + 1) * DEFAULT_NEW_LINE_INDEX, "\n");
-                          str_buil.Append(_str_bible.Substring(cur_index, DEFAULT_NEW_LINE_INDEX));
-                      }
-                      str_buil.Append(_str_bible.Substring(i * DEFAULT_NEW_LINE_INDEX));
+        {
+            LV_ListBibleDto?.Clear();
+            using (CBible_DAO dao = new CBible_DAO())
+            {
+                LV_ListBibleDto = dao.SelectBible(LV_FocusTestamentItem.bt_name_key);
+                Func<string, string> applyNewLine = (string _str_bible) =>
+                {
+                    StringBuilder str_buil = new StringBuilder(512);
+                    const int DEFAULT_NEW_LINE_INDEX = 35;
+                    int i = 0;
+                    for (; (i + 1) * DEFAULT_NEW_LINE_INDEX < _str_bible.Length; ++i)
+                    {
+                        int cur_index = i * DEFAULT_NEW_LINE_INDEX;
+                        _str_bible = _str_bible.Insert((i + 1) * DEFAULT_NEW_LINE_INDEX, "\n");
+                        str_buil.Append(_str_bible.Substring(cur_index, DEFAULT_NEW_LINE_INDEX));
+                    }
+                    str_buil.Append(_str_bible.Substring(i * DEFAULT_NEW_LINE_INDEX));
 
-                      return str_buil.ToString();
-                  };
+                    return str_buil.ToString();
+                };
 
-                  for (int i = 0; i < LV_ListBibleDto.Count; ++i)
-                  {
-                      LV_ListBibleDto[i].b_descript = applyNewLine(LV_ListBibleDto[i].b_descript);
-                  }
-              }
+                for (int i = 0; i < LV_ListBibleDto.Count; ++i)
+                {
+                    LV_ListBibleDto[i].b_descript = applyNewLine(LV_ListBibleDto[i].b_descript);
+                }
+            }
 
-              NotifyPropertyChanged(nameof(LV_ListBibleDto));
+            NotifyPropertyChanged(nameof(LV_ListBibleDto));
 
-          });
+        });
 
         //성경 줄거리 목록 출력
         public ICommand UpdateListBibleSummaryDto => new CDelegateCommand((object _obj) =>
-          {
-              LV_ListBibleSummary?.Clear();
-              using (CBible_DAO dao = new CBible_DAO())
-              {
-                  LV_ListBibleSummary = dao.SelectBibleSummary(LV_FocusBibleItem?.b_book, LV_FocusBibleItem?.b_chapter, LV_FocusBibleItem?.b_verse);
-              }
+        {
+            LV_ListBibleSummary?.Clear();
+            using (CBible_DAO dao = new CBible_DAO())
+            {
+                LV_ListBibleSummary = dao.SelectBibleSummary(LV_FocusBibleItem?.b_book, LV_FocusBibleItem?.b_chapter, LV_FocusBibleItem?.b_verse);
+            }
 
 
-              NotifyPropertyChanged(nameof(LV_ListBibleSummary));
-              TB_BibleSummary = "";
-              NotifyPropertyChanged(nameof(TB_BibleSummary));
-          });
+            NotifyPropertyChanged(nameof(LV_ListBibleSummary));
+            TB_BibleSummary = "";
+            NotifyPropertyChanged(nameof(TB_BibleSummary));
+        });
         //성경 묵상 목록 출력
         public ICommand UpdateListBibleContemplationDto => new CDelegateCommand((object _obj) =>
-          {
-              LV_ListBibleContemplation?.Clear();
-              using (CBible_DAO dao = new CBible_DAO())
-              {
-                  LV_ListBibleContemplation = dao.SelectBibleContemplation(LV_FocusBibleItem?.b_book, LV_FocusBibleItem?.b_chapter, LV_FocusBibleItem?.b_verse);
-              }
-              NotifyPropertyChanged(nameof(LV_ListBibleContemplation));
-              TB_BibleContemplation = "";
-              NotifyPropertyChanged(nameof(TB_BibleContemplation));
-          });
+        {
+            LV_ListBibleContemplation?.Clear();
+            using (CBible_DAO dao = new CBible_DAO())
+            {
+                LV_ListBibleContemplation = dao.SelectBibleContemplation(LV_FocusBibleItem?.b_book, LV_FocusBibleItem?.b_chapter, LV_FocusBibleItem?.b_verse);
+            }
+            NotifyPropertyChanged(nameof(LV_ListBibleContemplation));
+            TB_BibleContemplation = "";
+            NotifyPropertyChanged(nameof(TB_BibleContemplation));
+        });
 
 
         //성경 줄거리 입력
@@ -179,17 +179,18 @@ namespace TwoMites._01.Page._00.Bible
         public ICommand UpdateBibleSummary => new CDelegateCommand((object _obj) =>
         {
             LV_ListBibleSummary?.Clear();
+            int bs_pk_id = (int)_obj;
             using (CBible_DAO dao = new CBible_DAO())
             {
-                dao.UpdateBibleSummary(LV_FocusBibleItem.b_pk_id, TB_BibleSummary);
+                dao.UpdateBibleSummary(bs_pk_id, TB_BibleSummary);
             }
             TB_BibleSummary = "";
             NotifyPropertyChanged(nameof(TB_BibleSummary));
             UpdateListBibleSummaryDto?.Execute(null);
         });
-        public ICommand DeleteBibleSummary => new CDelegateCommand((object _ob) =>
+        public ICommand DeleteBibleSummary => new CDelegateCommand((object _obj) =>
         {
-            int bs_pk_id = (int)_ob;
+            int bs_pk_id = (int)_obj;
             LV_ListBibleSummary?.Clear();
             using (CBible_DAO dao = new CBible_DAO())
             {
@@ -212,8 +213,9 @@ namespace TwoMites._01.Page._00.Bible
             NotifyPropertyChanged(nameof(TB_BibleContemplation));
             UpdateListBibleContemplationDto?.Execute(null);
         });
-        public ICommand UpdateBibleContemplation => new CDelegateCommand((object _obj) => 
+        public ICommand UpdateBibleContemplation => new CDelegateCommand((object _obj) =>
         {
+            int bc_pk_id = (int)_obj;
             LV_ListBibleContemplation?.Clear();
             using (CBible_DAO dao = new CBible_DAO())
             {
@@ -224,7 +226,7 @@ namespace TwoMites._01.Page._00.Bible
         });
         public ICommand DeleteBibleContemplation => new CDelegateCommand((object _ob) =>
         {
-            int bc_pk_id = (int)_ob ;
+            int bc_pk_id = (int)_ob;
             LV_ListBibleContemplation?.Clear();
             using (CBible_DAO dao = new CBible_DAO())
             {
@@ -259,7 +261,7 @@ namespace TwoMites._01.Page._00.Bible
             LV_ListBibleDto?.Clear();
             char[] chDelimiter = { ',' };
             List<string> listSearchKeword = TB_SearchKeyword.Split(chDelimiter).ToList();
-            for(int i = 0; i < listSearchKeword.Count; ++i)
+            for (int i = 0; i < listSearchKeword.Count; ++i)
                 listSearchKeword[i] = listSearchKeword[i].Trim();
 
             using (CBible_DAO dao = new CBible_DAO())
