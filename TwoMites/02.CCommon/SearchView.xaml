@@ -18,13 +18,18 @@
             <CheckBox Name="CB_AllDateSearch" Content="All" 
                 Margin="10,0,10,0"  
                 IsChecked="{Binding CB_IsSearchAll}"/>
-
             <TextBox Name="TB_SearchKeyword" Width="300"
                Margin="10,0,10,0"
-               Text="{Binding TB_SearchKeyword, Mode=TwoWay}"/>
+               Text="{Binding TB_SearchKeyword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="TB_SearchKeyword_KeyDown"/>
             <Button Name="Btn_Search" Width="100" Content="검색"
                   Margin="10,0,10,0"
                   Command="{Binding Search}" />
+            <TextBlock Width="auto" Margin="10,0,10,0" Padding="3" 
+                       Background="White"
+                       Text="{Binding TB_SearchCount, Mode=TwoWay}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       
+                       />
         </StackPanel>
     </Grid>
 </UserControl>

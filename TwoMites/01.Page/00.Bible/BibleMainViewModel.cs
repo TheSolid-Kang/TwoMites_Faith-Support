@@ -253,6 +253,7 @@ namespace TwoMites._01.Page._00.Bible
         public bool CB_IsSearchAll { get; set; } = true;
 
         public string TB_SearchKeyword { get; set; }
+        public string TB_SearchCount { get; set; }
         public ICommand Search => new CDelegateCommand((object _obj) =>
         {
             LV_ListBibleDto?.Clear();
@@ -265,8 +266,10 @@ namespace TwoMites._01.Page._00.Bible
             {
                 LV_ListBibleDto = dao.SelectSearchedBible(listSearchKeword, CB_IsSearchAll);
             }
-
             NotifyPropertyChanged(nameof(LV_ListBibleDto));
+
+            TB_SearchCount = "검색 된 구절 개수: " + LV_ListBibleDto?.Count + " 건";
+            NotifyPropertyChanged(nameof(TB_SearchCount));
         });
         #endregion
     }
