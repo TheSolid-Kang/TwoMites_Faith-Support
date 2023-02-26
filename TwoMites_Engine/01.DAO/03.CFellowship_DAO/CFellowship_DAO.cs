@@ -75,13 +75,6 @@ namespace TwoMites_Engine._01.DAO._03.CFellowship_DAO
             }
             return null;
         }
-
-
-        public void Dispose()
-        {
-            dao?.Dispose();
-            GC.SuppressFinalize(this);
-        }
         #endregion
 
     }

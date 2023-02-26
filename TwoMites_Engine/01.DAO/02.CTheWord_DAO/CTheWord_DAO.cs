@@ -10,7 +10,7 @@ namespace TwoMites_Engine._01.DAO._02.CTheWord_DAO
     public class CTheWord_DAO : Engine._01.DAO.MySQL_DAO_v3
     {
         public CTheWord_DAO() { }
-        ~CTheWord_DAO() { Dispose(); }
+        ~CTheWord_DAO() { }
 
         private Engine._01.DAO.MySQL_DAO_v3 dao;
         private const int DEFAULT_CAP = 1024;
