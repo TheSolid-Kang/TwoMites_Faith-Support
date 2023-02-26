@@ -49,5 +49,14 @@ namespace TwoMites._02.CCommon
         {
             GC.SuppressFinalize(true);
         }
+
+        private void TB_SearchKeyword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                e.Handled = true;
+                Btn_Search.Command.Execute(null);
+            }
+        }
     }
 }

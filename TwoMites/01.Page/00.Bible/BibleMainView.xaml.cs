@@ -52,24 +52,13 @@ namespace TwoMites._01.Page._00.Bible
 
         private void DG_ListSummary_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-/*            if (e.Key == Key.Enter && Keyboard.Modifiers != ModifierKeys.Shift)
-            {
-                e.Handled = true;
-                _viewModel.InsertBibleSummary.Execute(null);
-            }
-*/            var textBox = e.OriginalSource as System.Windows.Controls.TextBox;
+            var textBox = e.OriginalSource as System.Windows.Controls.TextBox;
             var content = textBox?.Text.ToString();
             _viewModel.TB_BibleSummary = content;
         }
 
         private void DG_ListContemplation_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-/*            if (e.Key == Key.Enter && Keyboard.Modifiers != ModifierKeys.Shift)
-            {
-                e.Handled = true;
-                _viewModel.InsertBibleContemplation.Execute(null);
-            }
-*/          
             var textBox = e.OriginalSource as System.Windows.Controls.TextBox;
             var content = textBox?.Text.ToString();
             _viewModel.TB_BibleContemplation = content;
@@ -86,13 +75,19 @@ namespace TwoMites._01.Page._00.Bible
         private void TB_UpdateSummary_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var summaryDto = DG_ListSummary.SelectedItem as BibleSummaryDto;
-            if (0 == summaryDto?.bs_pk_id)
+            if (null == summaryDto)
+            {
+                return;
+            }
+
+            if (0 == summaryDto.bs_pk_id)
             {
                 _viewModel.InsertBibleSummary.Execute(null);
             }
             else
             {
-                _viewModel.UpdateBibleSummary.Execute(null);
+                _viewModel.TB_BibleSummary = summaryDto.bs_descript;
+                _viewModel.UpdateBibleSummary.Execute(summaryDto?.bs_pk_id);
             }
         }
 
@@ -129,13 +124,19 @@ namespace TwoMites._01.Page._00.Bible
         private void TB_UpdateContemplation_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var contemplationDto = DG_ListContemplation.SelectedItem as BibleContemplationDto;
-            if (0 == contemplationDto?.bc_pk_id)
+            if (null == contemplationDto)
+            {
+                return;
+            }
+
+            if (0 == contemplationDto.bc_pk_id)
             {
                 _viewModel.InsertBibleContemplation.Execute(null);
             }
             else
             {
-                _viewModel.UpdateBibleContemplation.Execute(null);
+                _viewModel.TB_BibleContemplation = contemplationDto.bc_descript;
+                _viewModel.UpdateBibleContemplation.Execute(contemplationDto?.bc_pk_id);
             }
         }
 
