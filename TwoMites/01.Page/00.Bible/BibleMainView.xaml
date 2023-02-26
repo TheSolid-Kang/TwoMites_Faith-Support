@@ -75,7 +75,8 @@
             <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="4" Background="#FFf5f5f5" Margin="10,10,10,0" CornerRadius="2"  Panel.ZIndex="5">
                 <DataGrid x:Name="DG_ListBible" Margin="8" BorderBrush="#FFBBBBBB" Grid.Row="0" 
               ItemsSource="{Binding LV_ListBibleDto}" ColumnHeaderStyle="{DynamicResource StatusHeaderStyle}"
-              AutoGenerateColumns="False" SelectedItem="{Binding LV_FocusBibleItem, Mode=TwoWay}"  >
+              AutoGenerateColumns="False" SelectedItem="{Binding LV_FocusBibleItem, Mode=TwoWay}"  
+                          IsReadOnly="True" CanUserAddRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="성경" Binding="{Binding b_book}" Width="auto"/>
                         <DataGridTextColumn Header="장" Binding="{Binding b_chapter}" Width="auto" />
@@ -108,7 +109,7 @@
                              CanUserAddRows="False" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="업데이트 일자" Binding="{Binding bs_date, StringFormat=yyyy-MM-dd HH:mm:ss}" MinWidth="120" Width="auto"/>
-                            <DataGridTextColumn Header="내용" Binding="{Binding bs_descript}" MinWidth="120" Width="*" >
+                            <DataGridTextColumn Header="성경 요약 내용" Binding="{Binding bs_descript}" MinWidth="120" Width="*" >
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -141,12 +142,8 @@
                                                                 <ColumnDefinition Width="auto"/>
                                                                 <ColumnDefinition Width="auto"/>
                                                             </Grid.ColumnDefinitions>
-                                                            <Border BorderThickness="1" BorderBrush="Black" Grid.Column="0" Background="SkyBlue"  Margin="1" >
-                                                                <TextBlock x:Name="TB_UpdateSummary" Text="수정" MouseDown="TB_UpdateSummary_MouseDown"/>
-                                                            </Border>
-                                                            <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Background="SkyBlue" Margin="1" >
-                                                                <TextBlock x:Name="TB_DeleteSummary" Text="삭제"  Margin="1" MouseDown="TB_DeleteSummary_MouseDown"/>
-                                                            </Border>
+                                                            <TextBlock x:Name="TB_UpdateSummary" Text="수정" Margin="1" Grid.Column="0" Background="SkyBlue" Foreground="Black" MouseDown="TB_UpdateSummary_MouseDown"/>
+                                                            <TextBlock x:Name="TB_DeleteSummary" Text="삭제" Margin="1" Grid.Column="1" Background="PaleVioletRed" Foreground="Black" MouseDown="TB_DeleteSummary_MouseDown"/>
                                                         </Grid>
                                                     </Border>
                                                 </ControlTemplate>
@@ -164,7 +161,7 @@
               ItemsSource="{Binding LV_ListBibleContemplation, Mode=TwoWay}" ColumnHeaderStyle="{DynamicResource StatusHeaderStyle}" AutoGenerateColumns="False" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="업데이트 일자" Binding="{Binding bc_date, StringFormat=yyyy-MM-dd HH:mm:ss}" MinWidth="120" Width="auto"/>
-                            <DataGridTextColumn Header="내용" Binding="{Binding bc_descript}" MinWidth="120" Width="*"  >
+                            <DataGridTextColumn Header="성경 묵상 내용" Binding="{Binding bc_descript}" MinWidth="120" Width="*"  >
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="TextWrapping" Value="Wrap" />
@@ -197,12 +194,8 @@
                                                                 <ColumnDefinition Width="auto"/>
                                                                 <ColumnDefinition Width="auto"/>
                                                             </Grid.ColumnDefinitions>
-                                                            <Border BorderThickness="1" BorderBrush="Black" Grid.Column="0" Background="SkyBlue"  Margin="1" >
-                                                                <TextBlock x:Name="TB_UpdateContemplation" Text="수정" MouseDown="TB_UpdateContemplation_MouseDown"/>
-                                                            </Border>
-                                                            <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Background="SkyBlue" Margin="1" >
-                                                                <TextBlock x:Name="TB_DeleteContemplation" Text="삭제"  Margin="1" MouseDown="TB_DeleteContemplation_MouseDown"/>
-                                                            </Border>
+                                                            <TextBlock x:Name="TB_UpdateContemplation" Text="수정" Margin="1" Grid.Column="0" Background="SkyBlue" Foreground="Black" MouseDown="TB_UpdateContemplation_MouseDown"/>
+                                                            <TextBlock x:Name="TB_DeleteContemplation" Text="삭제" Margin="1" Grid.Column="1" Background="PaleVioletRed" Foreground="Black" MouseDown="TB_DeleteContemplation_MouseDown"/>
                                                         </Grid>
                                                     </Border>
                                                 </ControlTemplate>
