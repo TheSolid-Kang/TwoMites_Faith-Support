@@ -25,4 +25,8 @@
     <Resource Include="97.Resource\TwoMites.png" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /E /Y &quot;$(TargetDir)\*&quot; &quot;C:\TwoMites\*&quot;;" />
+  </Target>
+
 </Project>
