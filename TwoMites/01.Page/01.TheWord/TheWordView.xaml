@@ -33,9 +33,9 @@
         <Grid Background="White" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="7"/>
 
 
-        <Grid Background="#FFDCDCE0" Grid.Row="2" Grid.Column="4" Grid.RowSpan="4" Grid.ColumnSpan="3" 
+        <Grid Background="#FFDCDCE0" Grid.Row="2" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="3" 
           Panel.ZIndex="1">
-            <ListBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" Width="Auto" 
+            <ListBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="7" Width="Auto" 
                   ItemsSource="{Binding LV_ListTheWordDto}"
                   SelectedItem="{Binding LV_focusTheWordItem, Mode=TwoWay}" >
                 <ListBox.ItemTemplate>
@@ -142,26 +142,19 @@
                 <Button Command="{Binding SaveTheWord}"  Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Content="저장"/>
                 <Button Command="{Binding CancelWriteTheWord}"  Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="6" Content="삭제"/>
             </Grid>
-            <Grid Margin="10" Grid.Row="0" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-            </Grid>
+
+        </Grid>
+        <Grid Margin="10" Grid.Row="5" Grid.Column="4" Grid.RowSpan="1" Grid.ColumnSpan="3" Panel.ZIndex="10"
+               AllowDrop="True" DragDrop.Drop="Grid_Drop" Background="#FFBFBFBF">
+            <Label x:Name="L_FilePath">data</Label>
+        </Grid>
+        <Grid Margin="10" Grid.Row="6" Grid.Column="4" Grid.RowSpan="1" Grid.ColumnSpan="3" Panel.ZIndex="10">
+            <ListView x:Name="LB_FileDrop"
+                     DragDrop.Drop="LB_FileDrop_Drop"
+                     DragDrop.DragEnter="LB_FileDrop_DragEnter"
+                     AllowDrop="True">
+                
+            </ListView>
 
         </Grid>
     </Grid>
