@@ -12,6 +12,8 @@ using TwoMites_Engine._03.Mgr;
 using System.ComponentModel;
 using System.Windows;
 using TwoMites_Engine._01.DAO._02.CTheWord_DAO;
+using TwoMites._02.CCommon.Popup;
+using System.IO;
 
 namespace TwoMites._01.Page._01.TheWord
 {
@@ -59,6 +61,7 @@ namespace TwoMites._01.Page._01.TheWord
                 obsCommander.Add(new CCommander("새등록", CreateTheWord));
                 obsCommander.Add(new CCommander("저장", SaveTheWord));
                 obsCommander.Add(new CCommander("삭제", DeleteTheWord));
+                obsCommander.Add(new CCommander("불러오기", OpenFileSelect));
                 return obsCommander;
             }
         }
@@ -121,6 +124,7 @@ namespace TwoMites._01.Page._01.TheWord
         public bool CB_IsSearchAll { get; set; } = true;
 
         public string TB_SearchKeyword { get; set; }
+        public string TB_SearchCount { get; set; }
         public ICommand Search => new CDelegateCommand((object _obj) =>
         {
             char[] ch_split = { ',' };
@@ -132,6 +136,21 @@ namespace TwoMites._01.Page._01.TheWord
                                  select element).ToList();
             LV_ListTheWordDto = new ObservableCollection<TheWordDTO>(list_the_word);
 
+        });
+        #endregion
+        #region 불러오기 bind 변수
+        private List<FileInfo> _listFileInfoDto { get; set; } = new List<FileInfo>();
+        public ICommand OpenFileSelect => new CDelegateCommand((object _obj) =>
+        {
+            FileSelectView fileSelectView = new FileSelectView(this);
+            fileSelectView.ShowDialog();
+            _listFileInfoDto.Clear();
+            foreach (var fileInfoDto in fileSelectView.DG_FileNames.Items)
+            {
+                _listFileInfoDto.Add((FileInfo)fileInfoDto);
+            }
+            fileSelectView.Dispose();
+            fileSelectView.Close();
         });
         #endregion
     }
