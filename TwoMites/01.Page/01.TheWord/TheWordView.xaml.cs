@@ -25,12 +25,12 @@ namespace TwoMites._01.Page._01.TheWord
         public TheWordView()
         {
             InitializeComponent();
-            m_view_model = new TheWordViewModel();
-            this.DataContext = m_view_model;
-            m_side_commander.DataContext = m_view_model;
+            _viewModel = new TheWordViewModel();
+            this.DataContext = _viewModel;
+            CCommon_SearchView.DataContext = _viewModel;
+            CCommon_SideCommander.DataContext = _viewModel;
         }
-        private TheWordViewModel? m_view_model { get; set; }
-        private CSideCommander? m_side_commander { get; set; } = new CSideCommander();
+        private TheWordViewModel? _viewModel { get; set; }
 
         public void Load(object _obj, RoutedEventArgs _routed_event_args)
         {
@@ -38,10 +38,8 @@ namespace TwoMites._01.Page._01.TheWord
 
         public void UnLoad(object _obj, RoutedEventArgs _routed_event_args)
         {
-            m_view_model?.Dispose();
-            m_side_commander?.Dispose();
-            m_view_model = null;
-            m_side_commander = null;
+            _viewModel?.Dispose();
+            _viewModel = null;
         }
         public void Dispose()
         {

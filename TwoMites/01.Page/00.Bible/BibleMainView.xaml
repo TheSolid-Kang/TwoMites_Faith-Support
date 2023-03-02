@@ -8,7 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="1200"
              Loaded="Load" Unloaded="UnLoad"
-             xmlns:ccommon="clr-namespace:TwoMites._02.CCommon" >
+             xmlns:ccommon="clr-namespace:TwoMites._02.CCommon" 
+             >
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -49,8 +50,8 @@
                 </ListView.ItemContainerStyle>
             </ListView>
         </Grid>
-        <Grid Background="#FFDCDCE0" Grid.Row="5" Grid.Column="0" Grid.RowSpan="2">
-            <side_commander:CSideCommander />
+        <Grid Grid.Row="5" Grid.Column="0" Grid.RowSpan="2">
+            <side_commander:CSideCommander x:Name="CCommon_SideCommander"/>
         </Grid>
         <Grid Background="#FFE4E4C7" Grid.Row="1" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6">
             <Grid.RowDefinitions>
