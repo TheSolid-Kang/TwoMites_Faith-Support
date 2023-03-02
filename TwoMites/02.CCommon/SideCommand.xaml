@@ -8,25 +8,38 @@
              d:DesignHeight="300" d:DesignWidth="200"
                           Loaded="Load" Unloaded="UnLoad"
              >
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Border Grid.Row="1" >
-            <ListBox ItemsSource="{Binding ListCommander}" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ListBox.ItemTemplate>
-                    <DataTemplate >
-                        <Button Command="{Binding Command}"  IsEnabled="{Binding Enable}"  >
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding ImgPath}"/>
-                                <TextBlock Text="{Binding Name}"/>
-                            </StackPanel>
-                        </Button>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+    <Grid Background="#FFDCDCE0">
+        <Border  Background="#FFf5f5f5" Margin="10" CornerRadius="2"  Panel.ZIndex="5" >
+            <DataGrid  Margin="8" BorderBrush="#FFBBBBBB" HeadersVisibility="None"
+                        AutoGenerateColumns="False" CanUserResizeRows="False" CanUserAddRows="False" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            ItemsSource="{Binding ListCommander}" ColumnHeaderStyle="{DynamicResource StatusHeaderStyle}"  >
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="1*">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                            <Border HorizontalAlignment="Stretch" CornerRadius="2" Margin="1" BorderThickness="1.75" >
+                                                <Grid>
+                                                    <Button Padding="10" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Stretch"  
+                                                            Background="#FFDCDCE0" Command="{Binding Command}" >
+                                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                                                            <Image Source="{Binding ImgPath}"/>
+                                                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Border>
+
     </Grid>
 </UserControl>
