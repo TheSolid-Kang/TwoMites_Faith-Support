@@ -31,8 +31,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Background="White" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="7">
-            <ccommon:SearchView x:Name="CCommon_SearchView"
-                                Padding="10" Margin="10" Background="SkyBlue"></ccommon:SearchView>
+            <ccommon:SearchView x:Name="CCommon_SearchView" Padding="10" Margin="10" />
         </Grid>
 
         <Grid Background="#FFDCDCE0" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4">

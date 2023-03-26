@@ -110,26 +110,6 @@ namespace TwoMites._01.Page._00.Bible
             using (CBible_DAO dao = new CBible_DAO())
             {
                 LV_ListBibleDto = dao.SelectBible(LV_FocusTestamentItem.bt_name_key);
-                Func<string, string> applyNewLine = (string _str_bible) =>
-                {
-                    StringBuilder str_buil = new StringBuilder(512);
-                    const int DEFAULT_NEW_LINE_INDEX = 35;
-                    int i = 0;
-                    for (; (i + 1) * DEFAULT_NEW_LINE_INDEX < _str_bible.Length; ++i)
-                    {
-                        int cur_index = i * DEFAULT_NEW_LINE_INDEX;
-                        _str_bible = _str_bible.Insert((i + 1) * DEFAULT_NEW_LINE_INDEX, "\n");
-                        str_buil.Append(_str_bible.Substring(cur_index, DEFAULT_NEW_LINE_INDEX));
-                    }
-                    str_buil.Append(_str_bible.Substring(i * DEFAULT_NEW_LINE_INDEX));
-
-                    return str_buil.ToString();
-                };
-
-                for (int i = 0; i < LV_ListBibleDto.Count; ++i)
-                {
-                    LV_ListBibleDto[i].b_descript = applyNewLine(LV_ListBibleDto[i].b_descript);
-                }
             }
 
             NotifyPropertyChanged(nameof(LV_ListBibleDto));

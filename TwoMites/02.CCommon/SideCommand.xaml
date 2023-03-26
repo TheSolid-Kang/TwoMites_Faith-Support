@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:TwoMites._02.CCommon"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200"
-                          Loaded="Load" Unloaded="UnLoad"
-             >
+             Loaded="Load" Unloaded="UnLoad" >
     <Grid Background="#FFDCDCE0">
         <Border  Background="#FFf5f5f5" Margin="10" CornerRadius="2"  Panel.ZIndex="5" >
             <DataGrid  Margin="8" BorderBrush="#FFBBBBBB" HeadersVisibility="None"

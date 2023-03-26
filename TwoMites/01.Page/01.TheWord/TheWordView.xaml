@@ -32,29 +32,10 @@
         </Grid.ColumnDefinitions>
 
         <Grid Background="White" Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="7">
-            <ccommon:SearchView x:Name="CCommon_SearchView"
-                                Padding="10" Margin="10" Background="SkyBlue"></ccommon:SearchView>
+            <ccommon:SearchView x:Name="CCommon_SearchView"  Padding="10" Margin="10" />
         </Grid>
 
-        <Grid Background="#FFDCDCE0" Grid.Row="2" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="3" 
-          Panel.ZIndex="1">
-            <ListBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="7" Width="Auto" 
-                  ItemsSource="{Binding LV_ListTheWordDto}"
-                  SelectedItem="{Binding LV_focusTheWordItem, Mode=TwoWay}" >
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <WrapPanel>
-                            <TextBlock Text="{Binding Path=tw_date, StringFormat=yyyy/MM/dd}"/>
-                            <TextBlock Text=" | "/>
-                            <TextBlock Text="{Binding Path=tw_pastor}"/>
-                            <TextBlock Text=" | "/>
-                            <TextBlock Text="{Binding Path=tw_title}"/>
-                        </WrapPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Grid>
-        <Grid Grid.Row="5" Grid.Column="0" Grid.RowSpan="2">
+        <Grid Grid.Row="5" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <ccommon:CSideCommander x:Name="CCommon_SideCommander" />
         </Grid>
         <Grid Background="#FFE4E4C7" Grid.Row="1" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="6">
@@ -70,34 +51,29 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Grid Margin="10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid Margin="10" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7">
+            <Border Background="#FFDCDCE0" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7"
+                    CornerRadius="2" Margin="10" Padding="10" BorderBrush="#FFBBBBBB" >
+                <ListBox Width="Auto" 
+                  ItemsSource="{Binding LV_ListTheWordDto}"
+                  SelectedItem="{Binding LV_focusTheWordItem, Mode=TwoWay}" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <TextBlock Text="{Binding Path=tw_date, StringFormat=yyyy/MM/dd}"/>
+                                <TextBlock Text=" | "/>
+                                <TextBlock Text="{Binding Path=tw_pastor}"/>
+                                <TextBlock Text=" | "/>
+                                <TextBlock Text="{Binding Path=tw_title}"/>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+            <Border Background="#FFDCDCE0" Grid.Row="0" Grid.Column="1" Grid.RowSpan="7"
+                    CornerRadius="2" Margin="10" Padding="10" BorderBrush="#FFBBBBBB" >
+                <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -116,48 +92,46 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Content="목사님" Background="white"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2" 
-                   Text="{Binding Path=LV_focusTheWordItem.tw_pastor, Mode=TwoWay}"  
-                 Background="White"/>
 
-                    <DatePicker Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="2" 
-                      Background="White"
-                      HorizontalAlignment="Left" 
-                      VerticalContentAlignment="Center"
-                      SelectedDate="{Binding LV_focusTheWordItem.tw_date}"/>
+                    <Grid Margin="10" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Content="목사님" Background="white"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2" Text="{Binding Path=LV_focusTheWordItem.tw_pastor, Mode=TwoWay}" Background="White"/>
+
+                        <DatePicker Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="2" 
+                          Background="White" HorizontalAlignment="Left" VerticalContentAlignment="Center" SelectedDate="{Binding LV_focusTheWordItem.tw_date}"/>
 
 
-                    <Label Grid.Row="4" Grid.Column="0" Margin="2" Grid.RowSpan="3" Background="AntiqueWhite"
-               HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
-               Content="title: "/>
-                    <TextBox Text="{Binding Path=LV_focusTheWordItem.tw_title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
-                 Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="6" Background="AntiqueWhite"
-                 AcceptsReturn="True"/>
+                        <Label Grid.Row="4" Grid.Column="0" Margin="2" Grid.RowSpan="3" Background="AntiqueWhite"
+                           HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Content="title: "/>
+                        <TextBox Text="{Binding Path=LV_focusTheWordItem.tw_title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                         Grid.Row="4" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="6" Background="AntiqueWhite" AcceptsReturn="True"/>
+                    </Grid>
+
+
+
+                    <TextBox Text="{Binding Path=LV_focusTheWordItem.tw_the_word, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                        Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="7" Background="White" AcceptsReturn="True"/>
                 </Grid>
 
-
-
-                <TextBox Text="{Binding Path=LV_focusTheWordItem.tw_the_word, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
-                 Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="7" Background="White"
-                 AcceptsReturn="True"/>
-                <Button Command="{Binding CreateTheWord}"  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Content="새등록"/>
-                <Button Command="{Binding SaveTheWord}"  Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Content="저장"/>
-                <Button Command="{Binding CancelWriteTheWord}"  Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="6" Content="삭제"/>
-            </Grid>
-
-        </Grid>
-        <Grid Margin="10" Grid.Row="5" Grid.Column="4" Grid.RowSpan="1" Grid.ColumnSpan="3" Panel.ZIndex="10"
-               AllowDrop="True" DragDrop.Drop="Grid_Drop" Background="#FFBFBFBF">
-            <Label x:Name="L_FilePath">data</Label>
-        </Grid>
-        <Grid Margin="10" Grid.Row="6" Grid.Column="4" Grid.RowSpan="1" Grid.ColumnSpan="3" Panel.ZIndex="10">
-            <ListView x:Name="LB_FileDrop"
-                     DragDrop.Drop="LB_FileDrop_Drop"
-                     DragDrop.DragEnter="LB_FileDrop_DragEnter"
-                     AllowDrop="True">
-                
-            </ListView>
+            </Border>
 
         </Grid>
     </Grid>
