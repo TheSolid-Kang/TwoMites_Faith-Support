@@ -26,6 +26,12 @@ namespace TwoMites._02.CCommon.Popup
     /// </summary>
     public partial class FileSelectView : Window, IViewBase
     {
+        private class FileContents
+        {
+            public string Name { get; set; }
+            public string Contents { get; set; }
+        }
+
         public FileSelectView()
         {
             InitializeComponent();
@@ -36,7 +42,7 @@ namespace TwoMites._02.CCommon.Popup
         }
         ~FileSelectView() 
         {
-            LB_Contents.Items?.Clear();
+            DG_Contents.Items?.Clear();
             DG_FileNames.Items?.Clear();
         }
         
@@ -75,12 +81,20 @@ namespace TwoMites._02.CCommon.Popup
         {
             DG_FileNames.Items?.Clear();
             List<string> listFilePath = GetDropFilesPaths(e);
+            if(listFilePath == null)
+            {
+                return;
+            }
             AddFileNames(listFilePath);
         }
         private void TB_AddFile_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DG_FileNames.Items?.Clear();
-            List<string> listFilePath = CFileMgr.GetInstance().GetFileNames();
+            List<string>? listFilePath = CFileMgr.GetInstance().GetFileNames();
+            if (listFilePath == null)
+            {
+                return;
+            }
             AddFileNames(listFilePath);
         }
         private void AddFileNames(List<string> _listFileName)
@@ -91,8 +105,14 @@ namespace TwoMites._02.CCommon.Popup
             {
                 FileInfo fileInfo = new FileInfo(_filePath);
                 var extension = fileInfo.Extension.ToLower();
-                if (extension == ".txt" || extension == ".md")
+                if (extension == ".txt" 
+                    || extension == ".cpp" 
+                    || extension == ".docx" 
+                    || extension == ".doc" 
+                    || extension == ".hwp")
+                {
                     DG_FileNames.Items?.Add(fileInfo);
+                }
             }
         }
         private List<string> GetDropFilesPaths(DragEventArgs e, bool deduplication = false)
@@ -134,23 +154,28 @@ namespace TwoMites._02.CCommon.Popup
         {
             DG_FileNames.Items?.Remove(DG_FileNames.SelectedItem);
         }
+        private StringBuilder _strBuil;
         private void DG_FileNames_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
+            _strBuil = new StringBuilder(32768);
             var dataGrid = sender as DataGrid;
-            LB_Contents.Items.Clear();
+            var listFileContents = new List<FileContents>();
             foreach(var _file in dataGrid.SelectedItems)
             {
                 var fileInfo = _file as FileInfo;
 
-                LB_Contents.Items.Add(fileInfo.FullName);
+                _strBuil.AppendLine($"file path: {fileInfo.FullName}");
                 foreach (var _line in CFileMgr.GetInstance().GetFileTextIter(fileInfo.FullName))
                 {
-                    LB_Contents.Items.Add(_line);
+                    _strBuil.AppendLine(_line);
                 }
-                LB_Contents.Items.Add("");
-                LB_Contents.Items.Add("");
+                _strBuil.AppendLine("\n\n\n");
+                var fileContents = new FileContents();
+                fileContents.Name = fileInfo.FullName;
+                fileContents.Contents = CFileMgr.GetInstance().GetFileText(fileInfo.FullName);
+                listFileContents.Add(fileContents);
             }
-
+            DG_Contents.ItemsSource = listFileContents;
         }
     }
 }

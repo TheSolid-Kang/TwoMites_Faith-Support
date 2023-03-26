@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TwoMites._02.CCommon.Popup"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800" 
-        Title="File Select"
-        Closed="Window_Closed">
+      d:DesignHeight="450" d:DesignWidth="600" 
+      Loaded="Load" Unloaded="UnLoad"
+      Title="File Select" Closed="Window_Closed">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -84,13 +84,28 @@
             </DataGrid>
         </Grid>
 
-        <Grid Grid.Row="1" Grid.Column="3" Grid.RowSpan="4" Grid.ColumnSpan="4"
-                  Background="SkyBlue">
-            <ListBox x:Name="LB_Contents"
-                 Margin="10" Padding="10" >
-                <RichTextBox Width="auto" />
-            </ListBox>
-        </Grid>
+        <Border  Grid.Row="1" Grid.Column="3" Grid.RowSpan="4" Grid.ColumnSpan="4"
+                Background="#FFf5f5f5" Margin="10,10,10,0" CornerRadius="2"  Panel.ZIndex="5" >
+            <DataGrid x:Name="DG_Contents" Margin="8" BorderBrush="#FFBBBBBB" Grid.Row="0"
+                      ColumnHeaderStyle="{DynamicResource StatusHeaderStyle}"
+                      AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Contents" Binding="{Binding Contents, Mode=TwoWay}" MinWidth="120" Width="*" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                        <DataGridTextColumn.EditingElementStyle>
+                            <Style TargetType="TextBox">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                                <Setter Property="AcceptsReturn" Value="true" />
+                            </Style>
+                        </DataGridTextColumn.EditingElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
 
     </Grid>
 </Window>
